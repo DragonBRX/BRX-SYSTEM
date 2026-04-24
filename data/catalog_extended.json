@@ -1,0 +1,1028 @@
+{
+  "agents": [
+    {
+      "name": "AutoGPT",
+      "repo": "Significant-Gravitas/AutoGPT",
+      "stars": 168000,
+      "description": "Autonomous agent for task automation using LLMs",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "automation",
+        "llm"
+      ]
+    },
+    {
+      "name": "OpenHands",
+      "repo": "All-Hands-AI/OpenHands",
+      "stars": 42000,
+      "description": "Software development agents platform",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "coding",
+        "development"
+      ]
+    },
+    {
+      "name": "MetaGPT",
+      "repo": "geekan/MetaGPT",
+      "stars": 45000,
+      "description": "Multi-agent framework simulating software company",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "multi-agent",
+        "software"
+      ]
+    },
+    {
+      "name": "CrewAI",
+      "repo": "joaomdmoura/crewAI",
+      "stars": 28000,
+      "description": "Framework for orchestrating role-playing agents",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "orchestration",
+        "team"
+      ]
+    },
+    {
+      "name": "SWE-agent",
+      "repo": "princeton-nlp/SWE-agent",
+      "stars": 18000,
+      "description": "Resolves GitHub issues autonomously",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "coding",
+        "github"
+      ]
+    },
+    {
+      "name": "VoltAgent",
+      "repo": "VoltAgent/voltagent",
+      "stars": 3500,
+      "description": "TypeScript AI Agent Engineering Platform",
+      "language": "TypeScript",
+      "tags": [
+        "agents",
+        "typescript",
+        "framework"
+      ]
+    },
+    {
+      "name": "PraisonAI",
+      "repo": "MervinPraison/PraisonAI",
+      "stars": 2200,
+      "description": "Production-ready multi-AI framework",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "production",
+        "multi-ai"
+      ]
+    },
+    {
+      "name": "LangGraph",
+      "repo": "langchain-ai/langgraph",
+      "stars": 15000,
+      "description": "Build stateful agent workflows",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "workflows",
+        "langchain"
+      ]
+    },
+    {
+      "name": "AutoGen",
+      "repo": "microsoft/autogen",
+      "stars": 42000,
+      "description": "Multi-agent conversation framework from Microsoft",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "microsoft",
+        "conversation"
+      ]
+    },
+    {
+      "name": "ChatDev",
+      "repo": "OpenBMB/ChatDev",
+      "stars": 27000,
+      "description": "Communicative agents for software development",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "software",
+        "chat"
+      ]
+    },
+    {
+      "name": "SuperAGI",
+      "repo": "TransformerOptimus/SuperAGI",
+      "stars": 16000,
+      "description": "Dev-first framework for autonomous agents",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "dev",
+        "autonomous"
+      ]
+    },
+    {
+      "name": "BabyAGI",
+      "repo": "yoheinakajima/babyagi",
+      "stars": 20000,
+      "description": "AI-powered task management system",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "task-management",
+        "ai"
+      ]
+    },
+    {
+      "name": "MemGPT",
+      "repo": "cpacker/MemGPT",
+      "stars": 13000,
+      "description": "Memory management for LLM agents",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "memory",
+        "llm"
+      ]
+    },
+    {
+      "name": "Letta",
+      "repo": "letta-ai/letta",
+      "stars": 14000,
+      "description": "Memory-augmented agent framework",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "memory",
+        "framework"
+      ]
+    },
+    {
+      "name": "Agno",
+      "repo": "agno-agi/agno",
+      "stars": 20000,
+      "description": "Build agentic AI systems with memory and tools",
+      "language": "Python",
+      "tags": [
+        "agents",
+        "memory",
+        "tools"
+      ]
+    }
+  ],
+  "llms": [
+    {
+      "name": "Ollama",
+      "repo": "ollama/ollama",
+      "stars": 112000,
+      "description": "Run and manage LLMs locally",
+      "language": "Go",
+      "tags": [
+        "llm",
+        "local",
+        "inference"
+      ]
+    },
+    {
+      "name": "llama.cpp",
+      "repo": "ggml-org/llama.cpp",
+      "stars": 72000,
+      "description": "Efficient LLM inference in C/C++",
+      "language": "C++",
+      "tags": [
+        "llm",
+        "inference",
+        "cpp"
+      ]
+    },
+    {
+      "name": "vLLM",
+      "repo": "vllm-project/vllm",
+      "stars": 38000,
+      "description": "High-throughput inference engine",
+      "language": "Python",
+      "tags": [
+        "llm",
+        "inference",
+        "serving"
+      ]
+    },
+    {
+      "name": "LocalAI",
+      "repo": "mudler/localai",
+      "stars": 29000,
+      "description": "Self-hosted OpenAI alternative",
+      "language": "Go",
+      "tags": [
+        "llm",
+        "self-hosted",
+        "api"
+      ]
+    },
+    {
+      "name": "Open WebUI",
+      "repo": "open-webui/open-webui",
+      "stars": 82000,
+      "description": "Self-hosted ChatGPT-style interface",
+      "language": "JavaScript",
+      "tags": [
+        "llm",
+        "ui",
+        "chat"
+      ]
+    },
+    {
+      "name": "text-generation-webui",
+      "repo": "oobabooga/text-generation-webui",
+      "stars": 42000,
+      "description": "Web UI for running LLMs",
+      "language": "Python",
+      "tags": [
+        "llm",
+        "ui",
+        "web"
+      ]
+    },
+    {
+      "name": "LibreChat",
+      "repo": "danny-avila/LibreChat",
+      "stars": 24000,
+      "description": "Enhanced ChatGPT clone with multiple providers",
+      "language": "JavaScript",
+      "tags": [
+        "llm",
+        "chat",
+        "ui"
+      ]
+    },
+    {
+      "name": "SillyTavern",
+      "repo": "SillyTavern/SillyTavern",
+      "stars": 11000,
+      "description": "Frontend for LLM roleplay",
+      "language": "JavaScript",
+      "tags": [
+        "llm",
+        "roleplay",
+        "frontend"
+      ]
+    },
+    {
+      "name": "text-generation-inference",
+      "repo": "huggingface/text-generation-inference",
+      "stars": 10000,
+      "description": "HuggingFace LLM serving toolkit",
+      "language": "Python",
+      "tags": [
+        "llm",
+        "serving",
+        "huggingface"
+      ]
+    },
+    {
+      "name": "ollama-webui",
+      "repo": "ollama-webui/ollama-webui",
+      "stars": 45000,
+      "description": "Web interface for Ollama",
+      "language": "TypeScript",
+      "tags": [
+        "llm",
+        "ollama",
+        "web"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "LangChain",
+      "repo": "langchain-ai/langchain",
+      "stars": 105000,
+      "description": "Framework for LLM applications",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "llm",
+        "python"
+      ]
+    },
+    {
+      "name": "Langflow",
+      "repo": "langflow-ai/langflow",
+      "stars": 51000,
+      "description": "Low-code platform for agents and RAG",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "low-code",
+        "rag"
+      ]
+    },
+    {
+      "name": "Dify",
+      "repo": "langgenius/dify",
+      "stars": 76000,
+      "description": "Production-ready LLM workflows",
+      "language": "TypeScript",
+      "tags": [
+        "framework",
+        "production",
+        "workflows"
+      ]
+    },
+    {
+      "name": "LlamaIndex",
+      "repo": "run-llama/llama_index",
+      "stars": 41000,
+      "description": "Data framework for LLM applications",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "data",
+        "rag"
+      ]
+    },
+    {
+      "name": "DSPy",
+      "repo": "stanfordnlp/dspy",
+      "stars": 22000,
+      "description": "Programming foundation models",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "stanford",
+        "programming"
+      ]
+    },
+    {
+      "name": "n8n",
+      "repo": "n8n-io/n8n",
+      "stars": 69000,
+      "description": "Workflow automation with native AI",
+      "language": "TypeScript",
+      "tags": [
+        "framework",
+        "automation",
+        "workflows"
+      ]
+    },
+    {
+      "name": "Flowise",
+      "repo": "FlowiseAI/Flowise",
+      "stars": 35000,
+      "description": "Visual builder for LLM apps",
+      "language": "JavaScript",
+      "tags": [
+        "framework",
+        "visual",
+        "builder"
+      ]
+    },
+    {
+      "name": "Haystack",
+      "repo": "deepset-ai/haystack",
+      "stars": 18000,
+      "description": "NLP framework for search and QA",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "nlp",
+        "search"
+      ]
+    },
+    {
+      "name": "Semantic Kernel",
+      "repo": "microsoft/semantic-kernel",
+      "stars": 25000,
+      "description": "Microsoft SDK for AI development",
+      "language": "C#",
+      "tags": [
+        "framework",
+        "microsoft",
+        "sdk"
+      ]
+    },
+    {
+      "name": "PocketFlow",
+      "repo": "the-pocket/PocketFlow",
+      "stars": 6000,
+      "description": "Minimalist LLM framework",
+      "language": "Python",
+      "tags": [
+        "framework",
+        "minimalist",
+        "llm"
+      ]
+    }
+  ],
+  "rag": [
+    {
+      "name": "RAGFlow",
+      "repo": "infiniflow/ragflow",
+      "stars": 36000,
+      "description": "RAG engine with agent capabilities",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "engine",
+        "agents"
+      ]
+    },
+    {
+      "name": "GraphRAG",
+      "repo": "microsoft/graphrag",
+      "stars": 25000,
+      "description": "Graph-based knowledge RAG",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "graph",
+        "microsoft"
+      ]
+    },
+    {
+      "name": "Qdrant",
+      "repo": "qdrant/qdrant",
+      "stars": 23000,
+      "description": "High-performance vector database",
+      "language": "Rust",
+      "tags": [
+        "rag",
+        "vector-db",
+        "database"
+      ]
+    },
+    {
+      "name": "Quivr",
+      "repo": "QuivrHQ/quivr",
+      "stars": 37000,
+      "description": "Full-stack RAG assistant",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "assistant",
+        "fullstack"
+      ]
+    },
+    {
+      "name": "Verba",
+      "repo": "weaviate/Verba",
+      "stars": 9000,
+      "description": "RAG app with Weaviate",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "weaviate",
+        "golden-rag"
+      ]
+    },
+    {
+      "name": "Neo4j",
+      "repo": "neo4j/neo4j",
+      "stars": 14000,
+      "description": "Knowledge graph database",
+      "language": "Java",
+      "tags": [
+        "rag",
+        "graph",
+        "database"
+      ]
+    },
+    {
+      "name": "Chroma",
+      "repo": "chromadb/chroma",
+      "stars": 19000,
+      "description": "AI-native vector database",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "vector-db",
+        "ai-native"
+      ]
+    },
+    {
+      "name": "Weaviate",
+      "repo": "weaviate/weaviate",
+      "stars": 11000,
+      "description": "Vector search engine",
+      "language": "Go",
+      "tags": [
+        "rag",
+        "vector-db",
+        "search"
+      ]
+    },
+    {
+      "name": "Milvus",
+      "repo": "milvus-io/milvus",
+      "stars": 32000,
+      "description": "Distributed vector database",
+      "language": "Go",
+      "tags": [
+        "rag",
+        "vector-db",
+        "distributed"
+      ]
+    },
+    {
+      "name": "Pinecone",
+      "repo": "pinecone-io/pinecone-python-client",
+      "stars": 4000,
+      "description": "Vector database client",
+      "language": "Python",
+      "tags": [
+        "rag",
+        "vector-db",
+        "client"
+      ]
+    }
+  ],
+  "vision": [
+    {
+      "name": "ComfyUI",
+      "repo": "comfyanonymous/ComfyUI",
+      "stars": 72000,
+      "description": "Node-based Stable Diffusion interface",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "diffusion",
+        "ui"
+      ]
+    },
+    {
+      "name": "InvokeAI",
+      "repo": "invoke-ai/InvokeAI",
+      "stars": 24000,
+      "description": "Creative engine for Stable Diffusion",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "creative",
+        "diffusion"
+      ]
+    },
+    {
+      "name": "Diffusers",
+      "repo": "huggingface/diffusers",
+      "stars": 28000,
+      "description": "State-of-the-art diffusion models",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "diffusion",
+        "huggingface"
+      ]
+    },
+    {
+      "name": "Ultralytics",
+      "repo": "ultralytics/ultralytics",
+      "stars": 39000,
+      "description": "YOLOv8 object detection",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "detection",
+        "yolo"
+      ]
+    },
+    {
+      "name": "OpenCV",
+      "repo": "opencv/opencv",
+      "stars": 81000,
+      "description": "Computer vision library",
+      "language": "C++",
+      "tags": [
+        "vision",
+        "cv",
+        "library"
+      ]
+    },
+    {
+      "name": "Segment Anything",
+      "repo": "facebookresearch/segment-anything",
+      "stars": 51000,
+      "description": "Meta AI image segmentation",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "segmentation",
+        "meta"
+      ]
+    },
+    {
+      "name": "YOLOv5",
+      "repo": "ultralytics/yolov5",
+      "stars": 54000,
+      "description": "YOLO object detection",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "detection",
+        "yolo"
+      ]
+    },
+    {
+      "name": "PaddleOCR",
+      "repo": "PaddlePaddle/PaddleOCR",
+      "stars": 45000,
+      "description": "Multilingual OCR toolkit",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "ocr",
+        "multilingual"
+      ]
+    },
+    {
+      "name": "Tesseract",
+      "repo": "tesseract-ocr/tesseract",
+      "stars": 68000,
+      "description": "OCR engine",
+      "language": "C++",
+      "tags": [
+        "vision",
+        "ocr",
+        "engine"
+      ]
+    },
+    {
+      "name": "Face Recognition",
+      "repo": "ageitgey/face_recognition",
+      "stars": 65000,
+      "description": "Face recognition in Python",
+      "language": "Python",
+      "tags": [
+        "vision",
+        "face",
+        "recognition"
+      ]
+    }
+  ],
+  "audio": [
+    {
+      "name": "Whisper",
+      "repo": "openai/whisper",
+      "stars": 85000,
+      "description": "Robust speech recognition",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "stt",
+        "recognition"
+      ]
+    },
+    {
+      "name": "Bark",
+      "repo": "suno-ai/bark",
+      "stars": 38000,
+      "description": "Generative audio model",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "tts",
+        "generative"
+      ]
+    },
+    {
+      "name": "Coqui TTS",
+      "repo": "coqui-ai/TTS",
+      "stars": 34000,
+      "description": "Text-to-speech toolkit",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "tts",
+        "toolkit"
+      ]
+    },
+    {
+      "name": "SpeechBrain",
+      "repo": "speechbrain/speechbrain",
+      "stars": 12000,
+      "description": "PyTorch speech toolkit",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "speech",
+        "pytorch"
+      ]
+    },
+    {
+      "name": "Piper",
+      "repo": "rhasspy/piper",
+      "stars": 8000,
+      "description": "Fast local neural TTS",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "tts",
+        "local"
+      ]
+    },
+    {
+      "name": "ESPnet",
+      "repo": "espnet/espnet",
+      "stars": 10000,
+      "description": "End-to-end speech processing",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "speech",
+        "end-to-end"
+      ]
+    },
+    {
+      "name": "Wav2Lip",
+      "repo": "Rudrabha/Wav2Lip",
+      "stars": 12000,
+      "description": "Lip sync in videos",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "lip-sync",
+        "video"
+      ]
+    },
+    {
+      "name": "Real-Time Voice Cloning",
+      "repo": "CorentinJ/Real-Time-Voice-Cloning",
+      "stars": 55000,
+      "description": "Clone a voice in 5 seconds",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "voice-clone",
+        "real-time"
+      ]
+    },
+    {
+      "name": "AudioCraft",
+      "repo": "facebookresearch/audiocraft",
+      "stars": 25000,
+      "description": "Audio generation library",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "generation",
+        "meta"
+      ]
+    },
+    {
+      "name": "Ultimate Vocal Remover",
+      "repo": "Anjok07/ultimatevocalremovergui",
+      "stars": 23000,
+      "description": "Vocal removal from audio",
+      "language": "Python",
+      "tags": [
+        "audio",
+        "vocal-removal",
+        "gui"
+      ]
+    }
+  ],
+  "coding": [
+    {
+      "name": "Claude Code",
+      "repo": "anthropics/claude-code",
+      "stars": 15000,
+      "description": "Agentic coding in terminal",
+      "language": "TypeScript",
+      "tags": [
+        "coding",
+        "agent",
+        "terminal"
+      ]
+    },
+    {
+      "name": "Cline",
+      "repo": "cline/cline",
+      "stars": 37000,
+      "description": "Autonomous coding agent for VS Code",
+      "language": "TypeScript",
+      "tags": [
+        "coding",
+        "vscode",
+        "agent"
+      ]
+    },
+    {
+      "name": "Aider",
+      "repo": "Aider-AI/aider",
+      "stars": 28000,
+      "description": "AI pair programming in terminal",
+      "language": "Python",
+      "tags": [
+        "coding",
+        "pair-programming",
+        "terminal"
+      ]
+    },
+    {
+      "name": "Open Interpreter",
+      "repo": "OpenInterpreter/open-interpreter",
+      "stars": 62000,
+      "description": "Local code execution agent",
+      "language": "Python",
+      "tags": [
+        "coding",
+        "interpreter",
+        "local"
+      ]
+    },
+    {
+      "name": "Codex",
+      "repo": "openai/codex",
+      "stars": 18000,
+      "description": "OpenAI coding agent",
+      "language": "TypeScript",
+      "tags": [
+        "coding",
+        "openai",
+        "agent"
+      ]
+    },
+    {
+      "name": "Continue",
+      "repo": "continuedev/continue",
+      "stars": 23000,
+      "description": "AI coding assistant for IDEs",
+      "language": "TypeScript",
+      "tags": [
+        "coding",
+        "ide",
+        "assistant"
+      ]
+    },
+    {
+      "name": "GitHub Copilot CLI",
+      "repo": "github/copilot.vim",
+      "stars": 11000,
+      "description": "AI pair programmer for Vim/Neovim",
+      "language": "Vim Script",
+      "tags": [
+        "coding",
+        "vim",
+        "copilot"
+      ]
+    },
+    {
+      "name": "Tabby",
+      "repo": "TabbyML/tabby",
+      "stars": 25000,
+      "description": "Self-hosted AI coding assistant",
+      "language": "Rust",
+      "tags": [
+        "coding",
+        "self-hosted",
+        "assistant"
+      ]
+    }
+  ],
+  "security": [
+    {
+      "name": "Trivy",
+      "repo": "aquasecurity/trivy",
+      "stars": 24000,
+      "description": "Container and filesystem scanner",
+      "language": "Go",
+      "tags": [
+        "security",
+        "scanner",
+        "containers"
+      ]
+    },
+    {
+      "name": "OWASP ZAP",
+      "repo": "zaproxy/zaproxy",
+      "stars": 14000,
+      "description": "Web app security scanner",
+      "language": "Java",
+      "tags": [
+        "security",
+        "web",
+        "scanner"
+      ]
+    },
+    {
+      "name": "Bandit",
+      "repo": "PyCQA/bandit",
+      "stars": 6000,
+      "description": "Python security linter",
+      "language": "Python",
+      "tags": [
+        "security",
+        "python",
+        "linter"
+      ]
+    },
+    {
+      "name": "Semgrep",
+      "repo": "semgrep/semgrep",
+      "stars": 12000,
+      "description": "Static analysis for security",
+      "language": "OCaml",
+      "tags": [
+        "security",
+        "static-analysis",
+        "scanner"
+      ]
+    }
+  ],
+  "mlops": [
+    {
+      "name": "MLflow",
+      "repo": "mlflow/mlflow",
+      "stars": 20000,
+      "description": "ML lifecycle management",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "ml",
+        "lifecycle"
+      ]
+    },
+    {
+      "name": "Kubeflow",
+      "repo": "kubeflow/kubeflow",
+      "stars": 14000,
+      "description": "ML workflows on Kubernetes",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "kubernetes",
+        "workflows"
+      ]
+    },
+    {
+      "name": "Ray",
+      "repo": "ray-project/ray",
+      "stars": 37000,
+      "description": "Distributed computing framework",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "distributed",
+        "computing"
+      ]
+    },
+    {
+      "name": "BentoML",
+      "repo": "bentoml/BentoML",
+      "stars": 8000,
+      "description": "Model serving framework",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "serving",
+        "models"
+      ]
+    },
+    {
+      "name": "Prefect",
+      "repo": "PrefectHQ/prefect",
+      "stars": 17000,
+      "description": "Workflow orchestration",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "workflows",
+        "orchestration"
+      ]
+    },
+    {
+      "name": "Dagster",
+      "repo": "dagster-io/dagster",
+      "stars": 12000,
+      "description": "Data orchestration platform",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "data",
+        "orchestration"
+      ]
+    },
+    {
+      "name": "Feast",
+      "repo": "feast-dev/feast",
+      "stars": 6000,
+      "description": "Feature store for ML",
+      "language": "Python",
+      "tags": [
+        "mlops",
+        "features",
+        "store"
+      ]
+    }
+  ]
+}

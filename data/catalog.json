@@ -1,0 +1,214 @@
+{
+  "agents": [
+    {
+      "name": "AutoGPT",
+      "repo": "Significant-Gravitas/AutoGPT",
+      "stars": 168000,
+      "description": "Autonomous agent for task automation using LLMs"
+    },
+    {
+      "name": "OpenHands",
+      "repo": "All-Hands-AI/OpenHands",
+      "stars": 42000,
+      "description": "Software development agents platform"
+    },
+    {
+      "name": "MetaGPT",
+      "repo": "geekan/MetaGPT",
+      "stars": 45000,
+      "description": "Multi-agent framework simulating software company"
+    },
+    {
+      "name": "CrewAI",
+      "repo": "joaomdmoura/crewAI",
+      "stars": 28000,
+      "description": "Framework for orchestrating role-playing agents"
+    },
+    {
+      "name": "SWE-agent",
+      "repo": "princeton-nlp/SWE-agent",
+      "stars": 18000,
+      "description": "Resolves GitHub issues autonomously"
+    },
+    {
+      "name": "VoltAgent",
+      "repo": "VoltAgent/voltagent",
+      "stars": 3500,
+      "description": "TypeScript AI Agent Engineering Platform"
+    },
+    {
+      "name": "PraisonAI",
+      "repo": "MervinPraison/PraisonAI",
+      "stars": 2200,
+      "description": "Production-ready multi-AI framework"
+    }
+  ],
+  "llms": [
+    {
+      "name": "Ollama",
+      "repo": "ollama/ollama",
+      "stars": 112000,
+      "description": "Run and manage LLMs locally"
+    },
+    {
+      "name": "llama.cpp",
+      "repo": "ggml-org/llama.cpp",
+      "stars": 72000,
+      "description": "Efficient LLM inference in C/C++"
+    },
+    {
+      "name": "vLLM",
+      "repo": "vllm-project/vllm",
+      "stars": 38000,
+      "description": "High-throughput inference engine"
+    },
+    {
+      "name": "LocalAI",
+      "repo": "mudler/localai",
+      "stars": 29000,
+      "description": "Self-hosted OpenAI alternative"
+    },
+    {
+      "name": "Open WebUI",
+      "repo": "open-webui/open-webui",
+      "stars": 82000,
+      "description": "Self-hosted ChatGPT-style interface"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "LangChain",
+      "repo": "langchain-ai/langchain",
+      "stars": 105000,
+      "description": "Framework for LLM applications"
+    },
+    {
+      "name": "Langflow",
+      "repo": "langflow-ai/langflow",
+      "stars": 51000,
+      "description": "Low-code platform for agents and RAG"
+    },
+    {
+      "name": "Dify",
+      "repo": "langgenius/dify",
+      "stars": 76000,
+      "description": "Production-ready LLM workflows"
+    },
+    {
+      "name": "LlamaIndex",
+      "repo": "run-llama/llama_index",
+      "stars": 41000,
+      "description": "Data framework for LLM applications"
+    },
+    {
+      "name": "DSPy",
+      "repo": "stanfordnlp/dspy",
+      "stars": 22000,
+      "description": "Programming foundation models"
+    },
+    {
+      "name": "n8n",
+      "repo": "n8n-io/n8n",
+      "stars": 69000,
+      "description": "Workflow automation with native AI"
+    }
+  ],
+  "rag": [
+    {
+      "name": "RAGFlow",
+      "repo": "infiniflow/ragflow",
+      "stars": 36000,
+      "description": "RAG engine with agent capabilities"
+    },
+    {
+      "name": "GraphRAG",
+      "repo": "microsoft/graphrag",
+      "stars": 25000,
+      "description": "Graph-based knowledge RAG"
+    },
+    {
+      "name": "Qdrant",
+      "repo": "qdrant/qdrant",
+      "stars": 23000,
+      "description": "High-performance vector database"
+    },
+    {
+      "name": "Quivr",
+      "repo": "QuivrHQ/quivr",
+      "stars": 37000,
+      "description": "Full-stack RAG assistant"
+    }
+  ],
+  "vision": [
+    {
+      "name": "ComfyUI",
+      "repo": "comfyanonymous/ComfyUI",
+      "stars": 72000,
+      "description": "Node-based Stable Diffusion interface"
+    },
+    {
+      "name": "InvokeAI",
+      "repo": "invoke-ai/InvokeAI",
+      "stars": 24000,
+      "description": "Creative engine for Stable Diffusion"
+    },
+    {
+      "name": "Diffusers",
+      "repo": "huggingface/diffusers",
+      "stars": 28000,
+      "description": "State-of-the-art diffusion models"
+    },
+    {
+      "name": "Ultralytics",
+      "repo": "ultralytics/ultralytics",
+      "stars": 39000,
+      "description": "YOLOv8 object detection"
+    }
+  ],
+  "audio": [
+    {
+      "name": "Whisper",
+      "repo": "openai/whisper",
+      "stars": 85000,
+      "description": "Robust speech recognition"
+    },
+    {
+      "name": "Bark",
+      "repo": "suno-ai/bark",
+      "stars": 38000,
+      "description": "Generative audio model"
+    },
+    {
+      "name": "Coqui TTS",
+      "repo": "coqui-ai/TTS",
+      "stars": 34000,
+      "description": "Text-to-speech toolkit"
+    }
+  ],
+  "coding": [
+    {
+      "name": "Claude Code",
+      "repo": "anthropics/claude-code",
+      "stars": 15000,
+      "description": "Agentic coding in terminal"
+    },
+    {
+      "name": "Cline",
+      "repo": "cline/cline",
+      "stars": 37000,
+      "description": "Autonomous coding agent for VS Code"
+    },
+    {
+      "name": "Aider",
+      "repo": "Aider-AI/aider",
+      "stars": 28000,
+      "description": "AI pair programming in terminal"
+    },
+    {
+      "name": "Open Interpreter",
+      "repo": "OpenInterpreter/open-interpreter",
+      "stars": 62000,
+      "description": "Local code execution agent"
+    }
+  ]
+}

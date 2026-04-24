@@ -1,0 +1,189 @@
+version: "3.8"
+
+services:
+  # BRX API
+  api:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.api
+    container_name: brx-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/brx_system
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - ENVIRONMENT=production
+    volumes:
+      - ../../data:/app/data
+      - ../../data/models:/app/data/models
+    depends_on:
+      - postgres
+      - redis
+      - chromadb
+      - qdrant
+    networks:
+      - brx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Celery Worker
+  worker:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.worker
+    container_name: brx-worker
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/brx_system
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - ../../data:/app/data
+      - ../../data/models:/app/data/models
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - brx-network
+    restart: unless-stopped
+
+  # Celery Beat Scheduler
+  beat:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.worker
+    container_name: brx-beat
+    command: celery -A src.worker beat -l info
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/brx_system
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+    depends_on:
+      - redis
+    networks:
+      - brx-network
+    restart: unless-stopped
+
+  # Frontend Web
+  web:
+    build:
+      context: ../..
+      dockerfile: infrastructure/docker/Dockerfile.web
+    container_name: brx-web
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - brx-network
+    restart: unless-stopped
+
+  # PostgreSQL
+  postgres:
+    image: postgres:16-alpine
+    container_name: brx-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=brx_system
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - brx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: brx-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - brx-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # ChromaDB
+  chromadb:
+    image: chromadb/chroma:0.5.20
+    container_name: brx-chroma
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ANONYMIZED_TELEMETRY=FALSE
+    networks:
+      - brx-network
+    restart: unless-stopped
+
+  # Qdrant
+  qdrant:
+    image: qdrant/qdrant:v1.12.0
+    container_name: brx-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - brx-network
+    restart: unless-stopped
+
+  # Ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: brx-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - brx-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  postgres_data:
+  redis_data:
+  chroma_data:
+  qdrant_data:
+  ollama_data:
+
+networks:
+  brx-network:
+    driver: bridge
