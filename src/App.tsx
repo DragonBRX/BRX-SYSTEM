@@ -10,6 +10,10 @@ import KnowledgeBases from './pages/KnowledgeBases'
 import Workflows from './pages/Workflows'
 import Integrations from './pages/Integrations'
 import Settings from './pages/Settings'
+import Stories from './pages/Stories'
+import Code from './pages/Code'
+import Training from './pages/Training'
+import Catalog from './pages/Catalog'
 
 export default function App() {
   return (
@@ -23,6 +27,10 @@ export default function App() {
       <Route path="/agents" element={<Agents />} />
       <Route path="/knowledge" element={<KnowledgeBases />} />
       <Route path="/workflows" element={<Workflows />} />
+      <Route path="/stories" element={<Stories />} />
+      <Route path="/code" element={<Code />} />
+      <Route path="/training" element={<Training />} />
+      <Route path="/catalog" element={<Catalog />} />
       <Route path="/integrations" element={<Integrations />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="*" element={<NotFound />} />

@@ -12,6 +12,10 @@ import {
   LogOut,
   Menu,
   X,
+  BookText,
+  Code2,
+  GraduationCap,
+  Library,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -24,6 +28,10 @@ const navItems = [
   { path: "/agents", label: "Agents", icon: Bot },
   { path: "/knowledge", label: "Knowledge", icon: BookOpen },
   { path: "/workflows", label: "Workflows", icon: Workflow },
+  { path: "/stories", label: "Stories", icon: BookText },
+  { path: "/code", label: "Code", icon: Code2 },
+  { path: "/training", label: "Training", icon: GraduationCap },
+  { path: "/catalog", label: "Catalog", icon: Library },
   { path: "/integrations", label: "Integrations", icon: Plug },
   { path: "/settings", label: "Settings", icon: Settings },
 ]

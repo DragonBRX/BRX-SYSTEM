@@ -5,6 +5,10 @@ import { agentRouter } from "./agent-router";
 import { knowledgeRouter } from "./knowledge-router";
 import { workflowRouter } from "./workflow-router";
 import { integrationRouter, mcpRouter } from "./integration-router";
+import { storyRouter } from "./story-router";
+import { codeRouter } from "./code-router";
+import { trainingRouter } from "./training-router";
+import { catalogRouter } from "./catalog-router";
 
 export const appRouter = createRouter({
   ping: publicQuery.query(() => ({ ok: true, ts: Date.now() })),
@@ -15,6 +19,10 @@ export const appRouter = createRouter({
   workflow: workflowRouter,
   integration: integrationRouter,
   mcp: mcpRouter,
+  story: storyRouter,
+  code: codeRouter,
+  training: trainingRouter,
+  catalog: catalogRouter,
 });
 
 export type AppRouter = typeof appRouter;
