@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Accessibility Guide 📖</title>
+    <meta name="description" content="A free, open-source resource to help developers build accessible, inclusive web experiences with practical examples and patterns." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Web Accessibility Guide 📖" />
+    <meta property="og:description" content="A free, open-source resource to help developers build accessible, inclusive web experiences with practical examples and patterns." />
+    <meta property="og:url" content="https://github.com/arzucaner/web-accessibility-guide" />
+    <meta property="og:image" content="https://arzucaner.github.io/web-accessibility-guide/images/accessibility_guide.png" />
+    <meta property="og:site_name" content="Web Accessibility Guide" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Web Accessibility Guide 📖" />
+    <meta name="twitter:description" content="A free, open-source resource to help developers build accessible, inclusive web experiences." />
+    <meta name="twitter:image" content="https://arzucaner.github.io/web-accessibility-guide/images/accessibility_guide.png" />
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#000000">
+    
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="read-progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <a class="skip-link" href="#main" data-i18n="accessibility.skipToContent">Skip to main content</a>
+    
+    <!-- Language change announcement -->
+    <div id="language-announcement" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
+    
+    <header>
+      <p data-i18n="header.tagline">"Making the web accessible for everyone!"</p>
+      <div class="header-controls">
+        <label for="language-switcher" class="visually-hidden" data-i18n="language.label">Language</label>
+        <select id="language-switcher" aria-label="Language" data-i18n-aria-label="language.label">
+          <option value="en" lang="en">English (EN)</option>
+          <option value="tr" lang="tr">Türkçe (TR)</option>
+          <option value="es" lang="es">Español (ES)</option>
+          <option value="fr" lang="fr">Français (FR)</option>
+          <option value="de" lang="de">Deutsch (DE)</option>
+          <option value="ja" lang="ja">日本語 (JA)</option>
+        </select>
+        <button class="theme-toggle" onclick="toggleTheme()" data-i18n="header.toggleTheme">Toggle Theme</button>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#" onclick="showSection('accessibility-overview')" data-i18n="nav.accessibility">Accessibility</a>
+      <a href="#" onclick="showSection('monthly-challenge')">Monthly Challenge</a>
+      <a href="#" onclick="showSection('challenge-archive')">Challenge Archive</a>
+      <a href="#" onclick="showSection('screen-readers')" data-i18n="nav.screenReaders">Screen Readers</a>
+      <a href="#" onclick="showSection('contrast')" data-i18n="nav.contrast">Contrast & Colors</a>
+      <a href="#" onclick="showSection('keyboard')" data-i18n="nav.keyboard">Keyboard Navigation</a>
+      <a href="#" onclick="showSection('dynamic-content')" data-i18n="nav.dynamicContent">Dynamic Content</a>
+      <a href="#" onclick="showSection('form-validation')" data-i18n="nav.formValidation">Form Validation</a>
+      <a href="#" onclick="showSection('animations')" data-i18n="nav.animations">Accessible Animations</a>
+      <a href="#" onclick="showSection('multilingual-support')" data-i18n="nav.multilingualSupport">Multilingual Support</a>
+      <a href="#" onclick="showSection('dark-mode')" data-i18n="nav.darkMode">Dark Mode</a>
+      <a href="#" onclick="showSection('interactive-widgets')" data-i18n="nav.interactiveWidgets">Interactive Widgets</a>
+      <a href="#" onclick="showSection('notifications')" data-i18n="nav.notifications">Accessible Notifications</a>
+      <a href="#" onclick="showSection('hall-of-fame')">Hall of Fame</a>
+      <a href="#" onclick="showSection('contribute')">Contribute</a>
+      <a href="#" onclick="showSection('translate')">Translate</a>
+      <a href="#" onclick="showSection('community')">Community</a>
+      <a href="#" onclick="showSection('personas')">Personas</a>
+      <a href="#" onclick="showSection('spotlight')">Spotlight</a>
+      <a href="#" onclick="showSection('stories')">Stories</a>
+
+    </nav>
+
+    <div class="layout">
+      <aside class="sidebar" aria-labelledby="site-title">
+        <h1 id="site-title" data-i18n="sidebar.title">Web Accessibility Guide</h1>
+        <p data-i18n="sidebar.description">An open-source guide to help developers build more accessible and inclusive web experiences.</p>
+        
+        <!-- Search Input -->
+        <div class="search-container">
+          <label for="guide-search" class="visually-hidden" data-i18n="sidebar.searchLabel">Search the guide</label>
+          <input type="search" id="guide-search" data-i18n-placeholder="sidebar.searchPlaceholder" placeholder="Search..." aria-label="Search the guide" />
+          <div id="search-results-announcement" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
+        </div>
+
+        <div class="sidebar-buttons">
+          <a href="#accessibility-overview" class="btn btn-primary" id="read-guide-cta" data-i18n="sidebar.readGuide" aria-label="Read the Web Accessibility Guide">
+            Read the Guide
+          </a>
+          <a href="https://github.com/arzucaner/web-accessibility-guide" class="btn btn-secondary" data-i18n="sidebar.viewOnGitHub" aria-label="View Web Accessibility Guide on GitHub" rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        </div>
+
+        <!-- Text Size Controls -->
+        <div class="text-size-controls" aria-describedby="text-size-status">
+          <label for="font-size-slider" data-i18n="sidebar.textSize">Text size</label>
+          <div class="text-size-row">
+            <input type="range" id="font-size-slider" min="90" max="130" step="5" value="100" aria-valuemin="90" aria-valuemax="130" aria-valuenow="100" aria-label="Adjust text size (percent)" />
+            <button type="button" id="font-size-reset" class="btn" data-i18n="sidebar.reset" aria-label="Reset text size to 100 percent">Reset</button>
+          </div>
+          <div id="text-size-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+        </div>
+      </aside>
+
+      <main id="main" class="content" tabindex="-1">
+      <section id="accessibility-overview" data-wcag-id="accessibility-overview">
+        <h2>What is Accessibility? <a href="#accessibility-overview" class="section-link" aria-label="Copy link to What is Accessibility">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Accessibility ensures inclusivity by making web content usable for
+          everyone, including people with disabilities.
+        </p>
+        <h3>Why is Accessibility Important?</h3>
+        <ul>
+          <li>Enables equal access to information and services.</li>
+          <li>Improves user experience for everyone.</li>
+          <li>
+            Aligns with legal and ethical standards, such as WCAG and ADA
+            compliance.
+          </li>
+          <li>Enhances SEO and broadens audience reach.</li>
+        </ul>
+
+        <div class="share-tip" data-share-section="accessibility-overview">
+          <p class="share-text">Accessibility isn't a feature — it's a baseline. Build for everyone from the start.</p>
+          <button class="btn share-copy" type="button">Copy tip</button>
+          <span class="sr-only" aria-live="polite" data-share-status></span>
+        </div>
+      </section>
+
+      <section id="monthly-challenge" class="hidden">
+        <h2>Monthly Accessibility Challenge <a href="#monthly-challenge" class="section-link" aria-label="Copy link to Monthly Accessibility Challenge">#</a></h2>
+        <p>Small, practical tasks to improve accessibility—one challenge at a time.</p>
+
+        <article class="challenge-card" aria-labelledby="challenge-title" aria-describedby="challenge-desc">
+          <h3 id="challenge-title">Challenge: Fix an inaccessible form</h3>
+          <p id="challenge-desc">
+            The form below has common accessibility issues. Identify and fix them:
+            labels, error messages, focus order, and keyboard support.
+          </p>
+
+          <div class="challenge-actions">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://github.com/arzucaner/web-accessibility-guide/issues/new?template=monthly_challenge.yml&title=Monthly%20Challenge%3A%20Fix%20an%20inaccessible%20form"
+               id="challenge-join-btn">
+              Join the challenge (open issue)
+            </a>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://github.com/arzucaner/web-accessibility-guide/compare">
+              Submit a PR
+            </a>
+          </div>
+
+          <div id="challenge-status" aria-live="polite" aria-atomic="true" class="challenge-status visually-hidden"></div>
+
+          <details class="challenge-details">
+            <summary>Show the broken example</summary>
+            <div class="challenge-warning">
+              <p><strong>⚠️ Warning:</strong> This form is intentionally broken for demonstration purposes. It contains multiple accessibility issues that need to be fixed.</p>
+            </div>
+            <form class="challenge-form" novalidate>
+              <input type="text" placeholder="Name">
+              <input type="email" placeholder="Email">
+              <button type="submit">Send</button>
+              <p class="hint">Try submitting without filling fields.</p>
+            </form>
+
+            <div class="challenge-hints" aria-live="polite">
+              <p><strong>Hint:</strong> Check labels, focus states, and error feedback.</p>
+            </div>
+          </details>
+        </article>
+      </section>
+
+      <section id="challenge-archive" class="hidden">
+        <h2>Challenge Archive <a href="#challenge-archive" class="section-link" aria-label="Copy link to Challenge Archive">#</a></h2>
+        <p>Previous challenges and community submissions.</p>
+        <div id="challenge-archive-list" role="list" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <section id="screen-readers" class="hidden" data-wcag-id="screen-readers">
+        <h2>Screen Reader Optimization <a href="#screen-readers" class="section-link" aria-label="Copy link to Screen Reader Optimization">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Screen readers help visually impaired users navigate websites.
+          Semantic HTML and ARIA attributes improve compatibility.
+        </p>
+        <h3>ARIA Roles and Labels</h3>
+        <ul>
+          <li>
+            Use ARIA roles to describe elements:
+            <code>&lt;nav role="navigation"&gt;</code>
+          </li>
+          <li>
+            Add <code>aria-label</code> to buttons and links for better
+            descriptions:
+            <code
+              >&lt;button aria-label="Submit
+              Form"&gt;Submit&lt;/button&gt;</code
+            >
+          </li>
+        </ul>
+        <div class="quiz" data-quiz data-quiz-id="screen-readers">
+          <h3>Knowledge Check</h3>
+          <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+            <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+            <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+          </div>
+          <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+        </div>
+
+        <div class="ba-demo" data-demo>
+          <h3>Before / After: Descriptive Links</h3>
+          <div class="ba-toggle" role="group" aria-label="Demo view">
+            <button type="button" class="btn ba-btn" data-view="before" aria-pressed="true">Before</button>
+            <button type="button" class="btn ba-btn" data-view="after" aria-pressed="false">After</button>
+          </div>
+          <div class="ba-panels">
+            <div class="ba-panel" data-panel="before">
+              <div class="ba-code-block">
+                <pre><code>&lt;p&gt;To learn more about WCAG, &lt;a href="/wcag"&gt;click here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;button onclick="save()"&gt;Click here&lt;/button&gt;
+
+&lt;a href="/report.pdf"&gt;Download&lt;/a&gt;</code></pre>
+              </div>
+              <p class="ba-explanation"><strong>Issues:</strong> "Click here" and "Download" are meaningless when read out of context. Screen readers often list all links on a page — every one of these would sound identical.</p>
+            </div>
+            <div class="ba-panel hidden" data-panel="after">
+              <div class="ba-code-block">
+                <pre><code>&lt;p&gt;Learn more about
+  &lt;a href="/wcag"&gt;WCAG accessibility guidelines&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;button type="button" onclick="save()"&gt;
+  Save your progress
+&lt;/button&gt;
+
+&lt;a href="/report.pdf"
+   aria-label="Download accessibility audit report (PDF)"&gt;
+  Download report
+&lt;/a&gt;</code></pre>
+              </div>
+              <p class="ba-explanation"><strong>Fixed:</strong> Each link and button describes its purpose. The PDF link uses <code>aria-label</code> to provide extra context (file type). Screen reader users can scan links and immediately understand where each one leads.</p>
+            </div>
+          </div>
+          <p class="sr-only" aria-live="polite" data-ba-status></p>
+        </div>
+      </section>
+
+      <section id="contrast" class="hidden" data-wcag-id="contrast-colors">
+        <h2>Contrast & Colors <a href="#contrast" class="section-link" aria-label="Copy link to Contrast & Colors">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Ensure text is readable with sufficient contrast ratios. Use WCAG
+          standards for guidance.
+        </p>
+        <h3>Tools for Testing Contrast</h3>
+        <ul>
+          <li>
+            <a href="https://webaim.org/resources/contrastchecker/" rel="noopener noreferrer"
+              >WebAIM Contrast Checker</a
+            >
+          </li>
+          <li>
+            <a href="https://accessible-colors.com/" rel="noopener noreferrer">Accessible Colors Tool</a>
+          </li>
+        </ul>
+        <button onclick="toggleContrast()">Toggle High Contrast</button>
+        
+        <h3>Contrast Checker</h3>
+        <div class="contrast-checker">
+          <div class="contrast-inputs">
+            <div class="color-input-group">
+              <label for="text-color">Text color</label>
+              <input type="color" id="text-color" name="text-color" value="#000000" aria-describedby="contrast-results">
+            </div>
+            <div class="color-input-group">
+              <label for="background-color">Background color</label>
+              <input type="color" id="background-color" name="background-color" value="#ffffff" aria-describedby="contrast-results">
+            </div>
+          </div>
+          <div id="contrast-results" class="contrast-results" aria-live="polite" aria-atomic="true">
+            <div class="contrast-ratio">Contrast Ratio: <span id="ratio-value">21.00</span></div>
+            <div class="wcag-compliance">
+              <div class="compliance-item">
+                <span class="compliance-label">WCAG AA:</span>
+                <span id="aa-status" class="compliance-status pass">✓ Pass</span>
+              </div>
+              <div class="compliance-item">
+                <span class="compliance-label">WCAG AAA:</span>
+                <span id="aaa-status" class="compliance-status pass">✓ Pass</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section id="accessibility-checker">
+          <h2>Accessibility Checker</h2>
+          <label for="ac-code">Paste HTML to analyze</label>
+          <textarea id="ac-code" rows="10" spellcheck="false" placeholder="<img src='...'>"></textarea>
+          <div class="row">
+            <button type="button" id="ac-run" class="btn primary">Analyze</button>
+            <button type="button" id="ac-clear" class="btn">Clear</button>
+          </div>
+          <div id="ac-results" role="region" aria-live="polite" aria-label="Analysis results"></div>
+        </section>
+
+        <section class="quiz" aria-labelledby="contrast-quick-check">
+          <h3 id="contrast-quick-check">Quick Check</h3>
+          <p class="quiz-question">Which of the following ensures sufficient color contrast?</p>
+          <ul class="quiz-options" role="list">
+            <li>
+              <button type="button" class="quiz-option">Using colors you like</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option" data-correct="true">Ensuring contrast ratio meets WCAG AA</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option">Avoiding blue entirely</button>
+            </li>
+          </ul>
+          <p id="contrast-quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+        </section>
+
+        <div class="share-tip" data-share-section="contrast">
+          <p class="share-text">Always check your contrast ratio — WCAG AA requires at least 4.5:1 for normal text.</p>
+          <button class="btn share-copy" type="button">Copy tip</button>
+          <span class="sr-only" aria-live="polite" data-share-status></span>
+        </div>
+      </section>
+
+      <section id="keyboard" class="hidden" data-wcag-id="keyboard-navigation">
+        <h2>Keyboard Navigation <a href="#keyboard" class="section-link" aria-label="Copy link to Keyboard Navigation">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Keyboard accessibility is essential for users who cannot use a mouse.
+          Ensure proper focus management.
+        </p>
+        <h3>Focus Traps</h3>
+        <p>Prevent users from navigating outside modals or overlays.</p>
+        
+        <details class="playground">
+          <summary>Live Playground</summary>
+          <div class="pg-controls">
+            <label for="pg-code-keyboard">Edit HTML:</label>
+            <textarea id="pg-code-keyboard" rows="8" spellcheck="false">&lt;div class="modal" role="dialog" aria-labelledby="modal-title"&gt;
+  &lt;h2 id="modal-title"&gt;Keyboard Navigation Demo&lt;/h2&gt;
+  &lt;p&gt;Use Tab to navigate, Enter to activate, Escape to close.&lt;/p&gt;
+  &lt;button onclick="alert('Button 1 clicked')"&gt;Button 1&lt;/button&gt;
+  &lt;button onclick="alert('Button 2 clicked')"&gt;Button 2&lt;/button&gt;
+  &lt;button onclick="alert('Close modal')"&gt;Close&lt;/button&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.modal { 
+  border: 2px solid #007bff; 
+  padding: 20px; 
+  margin: 10px; 
+  background: #f8f9fa; 
+}
+button { 
+  margin: 5px; 
+  padding: 10px 15px; 
+  background: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+}
+button:focus { 
+  outline: 3px solid #ffcc00; 
+  outline-offset: 2px; 
+}
+&lt;/style&gt;</textarea>
+            <div class="pg-actions">
+              <button type="button" class="pg-run" onclick="runPlayground('pg-code-keyboard', 'pg-output-keyboard')">Run</button>
+              <button type="button" class="pg-reset" onclick="resetPlayground('pg-code-keyboard', 'pg-output-keyboard')">Reset</button>
+            </div>
+          </div>
+          <iframe class="pg-output" id="pg-output-keyboard" title="Playground output" sandbox="allow-scripts"></iframe>
+          <div class="pg-status" aria-live="polite" id="pg-status-keyboard"></div>
+          <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-source="pg-code-keyboard">Try on CodePen</button>
+        </details>
+
+        <blockquote class="sr-transcript">
+          <p><strong>Screen reader says:</strong> "Button 1, button. — Button 2, button. — Close, button."</p>
+        </blockquote>
+
+        <section class="quiz" aria-labelledby="keyboard-quick-check">
+          <h3 id="keyboard-quick-check">Quick Check</h3>
+          <p class="quiz-question">What keeps a modal keyboard-friendly for everyone?</p>
+          <ul class="quiz-options" role="list">
+            <li>
+              <button type="button" class="quiz-option">Let focus move anywhere on the page</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option" data-correct="true">Trap focus inside the modal and include a clear close action</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option">Require a mouse to dismiss the modal</button>
+            </li>
+          </ul>
+          <p id="keyboard-quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+        </section>
+
+        <div class="share-tip" data-share-section="keyboard">
+          <p class="share-text">If you can't reach it with Tab and activate it with Enter, it's not accessible.</p>
+          <button class="btn share-copy" type="button">Copy tip</button>
+          <span class="sr-only" aria-live="polite" data-share-status></span>
+        </div>
+      </section>
+
+      <section id="dynamic-content" class="hidden" data-wcag-id="dynamic-content">
+        <h2>Dynamic Content <a href="#dynamic-content" class="section-link" aria-label="Copy link to Dynamic Content">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Use ARIA live regions to announce dynamic changes to screen readers.
+        </p>
+        <div aria-live="polite" id="live-region">Welcome to our site!</div>
+        <button onclick="updateLiveRegion()">Update Message</button>
+
+        <blockquote class="sr-transcript">
+          <p><strong>Screen reader says:</strong> "The content has been updated!"</p>
+        </blockquote>
+        
+        <details class="playground">
+          <summary>Live Playground</summary>
+          <div class="pg-controls">
+            <label for="pg-code-aria">Edit HTML:</label>
+            <textarea id="pg-code-aria" rows="8" spellcheck="false">&lt;div&gt;
+  &lt;h3&gt;ARIA Live Region Demo&lt;/h3&gt;
+  &lt;p&gt;Click buttons to see live announcements:&lt;/p&gt;
+  &lt;button onclick="updateLiveRegion('pg-live-demo', 'Message updated!')"&gt;Update Message&lt;/button&gt;
+  &lt;button onclick="updateLiveRegion('pg-live-demo', 'New content loaded!')"&gt;Load Content&lt;/button&gt;
+  &lt;div id="pg-live-demo" aria-live="polite"&gt;Initial message&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+button { 
+  margin: 5px; 
+  padding: 10px 15px; 
+  background: #28a745; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+}
+button:focus { 
+  outline: 3px solid #ffcc00; 
+  outline-offset: 2px; 
+}
+#pg-live-demo { 
+  margin: 10px 0; 
+  padding: 10px; 
+  background: #e9ecef; 
+  border-radius: 4px; 
+}
+&lt;/style&gt;
+&lt;script&gt;
+function updateLiveRegion(id, message) {
+  document.getElementById(id).textContent = message;
+}
+&lt;/script&gt;</textarea>
+            <div class="pg-actions">
+              <button type="button" class="pg-run" onclick="runPlayground('pg-code-aria', 'pg-output-aria')">Run</button>
+              <button type="button" class="pg-reset" onclick="resetPlayground('pg-code-aria', 'pg-output-aria')">Reset</button>
+            </div>
+          </div>
+          <iframe class="pg-output" id="pg-output-aria" title="Playground output" sandbox="allow-scripts"></iframe>
+          <div class="pg-status" aria-live="polite" id="pg-status-aria"></div>
+          <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-source="pg-code-aria">Try on CodePen</button>
+        </details>
+        <section class="quiz" aria-labelledby="dynamic-content-quick-check">
+          <h3 id="dynamic-content-quick-check">Quick Check</h3>
+          <p class="quiz-question">How can you make sure important dynamic updates are announced?</p>
+          <ul class="quiz-options" role="list">
+            <li>
+              <button type="button" class="quiz-option">Change only the background color of the page</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option">Ask users to reload the page manually</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option" data-correct="true">Use an ARIA live region with the right politeness level</button>
+            </li>
+          </ul>
+          <p id="dynamic-content-quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+        </section>
+      </section>
+
+      <section id="form-validation" class="hidden" data-wcag-id="forms">
+        <h2>Form Validation <a href="#form-validation" class="section-link" aria-label="Copy link to Form Validation">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Use accessible error messages for invalid inputs. ARIA attributes help
+          convey errors to screen readers.
+        </p>
+        <form onsubmit="validateEmail(event)">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            aria-describedby="error-message"
+            placeholder="Enter your email"
+          />
+          <div id="error-message" class="error" aria-live="assertive"></div>
+          <button type="submit">Submit</button>
+        </form>
+
+        <blockquote class="sr-transcript">
+          <p><strong>Screen reader says:</strong> "Email, edit text. Please enter a valid email address."</p>
+        </blockquote>
+        
+        <details class="playground">
+          <summary>Live Playground</summary>
+          <div class="pg-controls">
+            <label for="pg-code-form">Edit HTML:</label>
+            <textarea id="pg-code-form" rows="8" spellcheck="false">&lt;form onsubmit="validateForm(event)"&gt;
+  &lt;h3&gt;Accessible Form Demo&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;label for="pg-name"&gt;Name (required):&lt;/label&gt;
+    &lt;input type="text" id="pg-name" aria-describedby="pg-name-error" required&gt;
+    &lt;div id="pg-name-error" aria-live="polite"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for="pg-email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="pg-email" aria-describedby="pg-email-error"&gt;
+    &lt;div id="pg-email-error" aria-live="polite"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;style&gt;
+label { display: block; margin: 10px 0 5px 0; font-weight: bold; }
+input { 
+  width: 100%; 
+  padding: 8px; 
+  border: 2px solid #ddd; 
+  border-radius: 4px; 
+  margin-bottom: 5px; 
+}
+input:focus { 
+  outline: none; 
+  border-color: #007bff; 
+}
+input:invalid { 
+  border-color: #dc3545; 
+}
+button { 
+  padding: 10px 20px; 
+  background: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  margin-top: 10px; 
+}
+button:focus { 
+  outline: 3px solid #ffcc00; 
+  outline-offset: 2px; 
+}
+.error { 
+  color: #dc3545; 
+  font-size: 14px; 
+  margin-top: 5px; 
+}
+&lt;/style&gt;
+&lt;script&gt;
+function validateForm(event) {
+  event.preventDefault();
+  const name = document.getElementById('pg-name');
+  const email = document.getElementById('pg-email');
+  const nameError = document.getElementById('pg-name-error');
+  const emailError = document.getElementById('pg-email-error');
+  
+  nameError.textContent = '';
+  emailError.textContent = '';
+  
+  if (!name.value.trim()) {
+    nameError.textContent = 'Name is required';
+    name.focus();
+    return;
+  }
+  
+  if (email.value && !email.value.includes('@')) {
+    emailError.textContent = 'Please enter a valid email address';
+    email.focus();
+    return;
+  }
+  
+  alert('Form submitted successfully!');
+}
+&lt;/script&gt;</textarea>
+            <div class="pg-actions">
+              <button type="button" class="pg-run" onclick="runPlayground('pg-code-form', 'pg-output-form')">Run</button>
+              <button type="button" class="pg-reset" onclick="resetPlayground('pg-code-form', 'pg-output-form')">Reset</button>
+            </div>
+          </div>
+          <iframe class="pg-output" id="pg-output-form" title="Playground output" sandbox="allow-scripts"></iframe>
+          <div class="pg-status" aria-live="polite" id="pg-status-form"></div>
+          <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-source="pg-code-form">Try on CodePen</button>
+        </details>
+        <section class="quiz" aria-labelledby="forms-quick-check">
+          <h3 id="forms-quick-check">Quick Check</h3>
+          <p class="quiz-question">Which practice keeps form error messages accessible?</p>
+          <ul class="quiz-options" role="list">
+            <li>
+              <button type="button" class="quiz-option" data-correct="true">Link errors to fields with clear text via aria-describedby</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option">Show only a red border without text guidance</button>
+            </li>
+            <li>
+              <button type="button" class="quiz-option">Delay all errors until users leave the page</button>
+            </li>
+          </ul>
+          <p id="forms-quiz-feedback" class="quiz-feedback" aria-live="polite"></p>
+        </section>
+
+        <div class="ba-demo" data-demo>
+          <h3>Before / After: Form Labels &amp; Errors</h3>
+          <div class="ba-toggle" role="group" aria-label="Demo view">
+            <button type="button" class="btn ba-btn" data-view="before" aria-pressed="true">Before</button>
+            <button type="button" class="btn ba-btn" data-view="after" aria-pressed="false">After</button>
+          </div>
+          <div class="ba-panels">
+            <div class="ba-panel" data-panel="before">
+              <div class="ba-code-block">
+                <pre><code>&lt;form&gt;
+  &lt;input type="text" placeholder="Name"&gt;
+  &lt;input type="email" placeholder="Email"&gt;
+  &lt;div style="color:red"&gt;Wrong!&lt;/div&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+              <p class="ba-explanation"><strong>Issues:</strong> No <code>&lt;label&gt;</code> elements — screen readers cannot identify fields. Error text is vague and not linked to any input. Placeholder text disappears on focus, leaving no visible label.</p>
+            </div>
+            <div class="ba-panel hidden" data-panel="after">
+              <div class="ba-code-block">
+                <pre><code>&lt;form novalidate&gt;
+  &lt;label for="name"&gt;Name (required):&lt;/label&gt;
+  &lt;input id="name" type="text" required
+         aria-describedby="name-error"&gt;
+  &lt;div id="name-error" role="alert"
+       aria-live="assertive"&gt;&lt;/div&gt;
+
+  &lt;label for="signup-email"&gt;Email:&lt;/label&gt;
+  &lt;input id="signup-email" type="email"
+         aria-describedby="email-error"&gt;
+  &lt;div id="email-error" role="alert"
+       aria-live="assertive"&gt;&lt;/div&gt;
+
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+              <p class="ba-explanation"><strong>Fixed:</strong> Every field has a visible <code>&lt;label&gt;</code> linked via <code>for</code>/<code>id</code>. Errors use <code>aria-describedby</code> so screen readers announce them. <code>role="alert"</code> with <code>aria-live="assertive"</code> ensures errors are announced immediately.</p>
+            </div>
+          </div>
+          <p class="sr-only" aria-live="polite" data-ba-status></p>
+        </div>
+      </section>
+
+      <section id="animations" class="hidden" data-wcag-id="animations">
+        <h2>Accessible Animations <a href="#animations" class="section-link" aria-label="Copy link to Accessible Animations">#</a></h2>
+        <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+          <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+        </div>
+        <p>
+          Animations can enhance user experience but should be designed
+          carefully to ensure they do not cause discomfort or confusion,
+          especially for users sensitive to motion.
+        </p>
+        <h3>Example: Motion Reduction</h3>
+        <p>Use media queries to detect user preferences for reduced motion:</p>
+        <div class="code-example">
+          <div class="code-example-header">
+            <button class="copy-button" onclick="copyCode(this)" aria-label="Copy code to clipboard">
+              <span class="copy-icon">📋</span>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre>
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none;
+    transition: none;
+  }
+}
+          </pre>
+        </div>
+        <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-example="code-example">Try on CodePen</button>
+        <button onclick="startAnimation()">Start Animation</button>
+        <div id="animated-box" class="box"></div>
+        <div class="quiz" data-quiz data-quiz-id="animations">
+          <h3>Knowledge Check</h3>
+          <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+          <div class="quiz-options">
+            <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+            <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+            <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+          </div>
+          <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </section>
+<section id="multilingual-support" class="hidden" data-wcag-id="multilingual-support">
+  <h2>Multilingual Support <a href="#multilingual-support" class="section-link" aria-label="Copy link to Multilingual Support">#</a></h2>
+  <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+    <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+  </div>
+  <p>
+    Providing multilingual support ensures inclusivity for users who speak
+    different languages.
+  </p>
+  <h3>Best Practices for Multilingual Websites</h3>
+  <ul>
+    <li>
+      Use the <code>lang</code> attribute to specify the language of the
+      content:
+    </li>
+    <code>&lt;html lang="en"&gt;</code>
+    <li>Provide a language switcher for easy navigation between languages.</li>
+    <li>Ensure translations are accurate and culturally appropriate.</li>
+  </ul>
+  <h3>Language Detection Example</h3>
+  <p>
+    Detect the user's preferred language and set the page language accordingly.
+  </p>
+  <div class="code-example">
+    <div class="code-example-header">
+      <button class="copy-button" onclick="copyCode(this)" aria-label="Copy code to clipboard">
+        <span class="copy-icon">📋</span>
+        <span class="copy-text">Copy</span>
+      </button>
+    </div>
+    <pre>
+navigator.language || navigator.userLanguage;
+    </pre>
+  </div>
+  <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-example="code-example">Try on CodePen</button>
+
+  <h3>Display "Hello World" in Multiple Languages</h3>
+  <div id="language-example">
+    <label for="language-select">Choose a language:</label>
+    <select id="language-select" aria-label="Select language">
+      <option value="en" lang="en">English</option>
+      <option value="fr" lang="fr">French</option>
+      <option value="ja" lang="ja">Japanese</option>
+    </select>
+    <p id="hello-world-text" lang="en">Hello World</p>
+  </div>
+  <div class="quiz" data-quiz data-quiz-id="multilingual-support">
+    <h3>Knowledge Check</h3>
+    <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+    <div class="quiz-options">
+      <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+      <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+      <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+    </div>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+  </div>
+  <div class="quiz" data-quiz data-quiz-id="interactive-widgets">
+    <h3>Knowledge Check</h3>
+    <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+    <div class="quiz-options">
+      <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+      <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+      <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+    </div>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</section>
+
+
+<section id="dark-mode" class="hidden" data-wcag-id="dark-mode">
+  <h2>Dark Mode <a href="#dark-mode" class="section-link" aria-label="Copy link to Dark Mode">#</a></h2>
+  <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+    <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+  </div>
+  <p>
+    Dark mode helps reduce eye strain and provides better readability in low-light environments.
+  </p>
+  <h3>Enable Dark Mode</h3>
+  <button class="btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+  <h3>Code Example</h3>
+  <p>Below is an example of how to implement dark mode using JavaScript and CSS:</p>
+  <div class="code-example">
+    <div class="code-example-header">
+      <button class="copy-button" onclick="copyCode(this)" aria-label="Copy code to clipboard">
+        <span class="copy-icon">📋</span>
+        <span class="copy-text">Copy</span>
+      </button>
+    </div>
+    <h4>CSS:</h4>
+    <pre>
+/* General Dark Mode Styles */
+.dark-mode {
+  background-color: #121212;
+  color: #f4f4f4;
+}
+
+.dark-mode header {
+  background-color: #1f1f1f;
+}
+    </pre>
+
+    <h4>JavaScript:</h4>
+    <pre>
+function toggleTheme() {
+  const body = document.body;
+  const isDarkMode = body.classList.toggle("dark-mode");
+  localStorage.setItem("dark-mode", isDarkMode ? "enabled" : "disabled");
+}
+
+// Load user preference on page load
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("dark-mode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
+});
+    </pre>
+  </div>
+  <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-example="code-example">Try on CodePen</button>
+  <div class="quiz" data-quiz data-quiz-id="dark-mode">
+    <h3>Knowledge Check</h3>
+    <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+    <div class="quiz-options">
+      <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+      <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+      <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+    </div>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</section>
+
+<section id="interactive-widgets" class="hidden" data-wcag-id="interactive-widgets">
+  <h2>Interactive Widgets <a href="#interactive-widgets" class="section-link" aria-label="Copy link to Interactive Widgets">#</a></h2>
+  <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+    <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+  </div>
+  <p>Accessible sliders, date pickers, and other custom UI components.</p>
+
+  <!-- Accessible Slider -->
+  <div class="slider-container">
+    <label for="slider" class="slider-label">Adjust Volume:</label>
+    <input
+      type="range"
+      id="slider"
+      class="slider"
+      min="0"
+      max="100"
+      value="50"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="50"
+      role="slider"
+      oninput="updateSliderValue(this)"
+      onkeydown="handleSliderKeydown(event, this)"
+    />
+    <span id="slider-value" aria-live="polite">50</span>
+  </div>
+
+  <!-- Accessible Date Picker -->
+  <div class="datepicker">
+    <label for="date-input" class="datepicker-label">Select a Date:</label>
+    <input
+      type="text"
+      id="date-input"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="calendar"
+      placeholder="DD-MM-YYYY"
+      readonly
+      onclick="toggleCalendar()"
+    />
+    <div id="calendar" class="calendar" role="dialog" aria-label="Date Picker">
+      <table>
+        <thead>
+          <tr>
+            <th>Su</th>
+            <th>Mo</th>
+            <th>Tu</th>
+            <th>We</th>
+            <th>Th</th>
+            <th>Fr</th>
+            <th>Sa</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-body">
+          <!-- Calendar days will be dynamically generated -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="notifications" class="hidden" data-wcag-id="notifications">
+  <h2>Accessible Notifications <a href="#notifications" class="section-link" aria-label="Copy link to Accessible Notifications">#</a></h2>
+  <div class="wcag-tags" aria-label="WCAG criteria" data-wcag-placeholder>
+    <span class="visually-hidden">Related WCAG criteria load dynamically.</span>
+  </div>
+  <p>
+    Notifications should be accessible to all users, including those using screen readers. Use ARIA live regions to ensure important updates are announced.
+  </p>
+  <h3>Implementing Screen-Reader Friendly Notifications</h3>
+  <ul>
+    <li>
+      Use <code>role="alert"</code> or <code>aria-live="polite"</code> for inline notifications to announce updates.
+    </li>
+    <li>
+      Ensure notifications have clear and concise messages.
+    </li>
+    <li>
+      Example:
+      <div class="code-example">
+        <div class="code-example-header">
+          <button class="copy-button" onclick="copyCode(this)" aria-label="Copy code to clipboard">
+            <span class="copy-icon">📋</span>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre>
+&lt;div role="alert" aria-live="assertive" class="toast-notification"&gt;
+  Your changes have been saved successfully!
+&lt;/div&gt;
+        </pre>
+      </div>
+      <button class="btn codepen-btn" aria-label="Open example on CodePen" data-codepen-example="code-example">Try on CodePen</button>
+    </li>
+  </ul>
+  <button class="btn" onclick="showNotification('Your changes have been saved successfully!')">Show Notification</button>
+  <div class="quiz" data-quiz data-quiz-id="notifications">
+    <h3>Knowledge Check</h3>
+    <p class="quiz-question" role="heading" aria-level="3">Loading question…</p>
+    <div class="quiz-options">
+      <button class="quiz-option" type="button" data-answer="wrong">Option A</button>
+      <button class="quiz-option" type="button" data-answer="wrong">Option B</button>
+      <button class="quiz-option" type="button" data-answer="correct">Option C</button>
+    </div>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+  </div>
+</section>
+
+<section id="hall-of-fame" class="hidden">
+  <h2>Hall of Fame <a href="#hall-of-fame" class="section-link" aria-label="Copy link to Hall of Fame">#</a></h2>
+  <p>Thanks to everyone improving accessibility—one contribution at a time.</p>
+  <div id="hof-list" role="list"></div>
+  <div id="hof-status" class="sr-only" aria-live="polite"></div>
+</section>
+
+<section id="contribute" class="hidden">
+  <h2>Contribute <a href="#contribute" class="section-link" aria-label="Copy link to Contribute">#</a></h2>
+  <p>Want to help make the web more inclusive? Here are easy ways to contribute.</p>
+
+  <div class="contribute-grid">
+    <article class="contribute-card" aria-labelledby="contrib-issues">
+      <h3 id="contrib-issues">Open an Issue</h3>
+      <p>Report a bug, suggest a feature, or improve documentation.</p>
+      <a class="btn primary" target="_blank" rel="noopener"
+         href="https://github.com/arzucaner/web-accessibility-guide/issues/new/choose">
+        Choose an issue template
+      </a>
+    </article>
+
+    <article class="contribute-card" aria-labelledby="contrib-first">
+      <h3 id="contrib-first">Good First Issues</h3>
+      <p>New to open source? Start here—small, friendly tasks.</p>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://github.com/arzucaner/web-accessibility-guide/issues?q=label%3A%22good%20first%20issue%22">
+        View good first issues
+      </a>
+    </article>
+
+    <article class="contribute-card" aria-labelledby="contrib-challenge">
+      <h3 id="contrib-challenge">Monthly Challenge</h3>
+      <p>Join the monthly accessibility challenge and learn by doing.</p>
+      <a class="btn" href="#monthly-challenge" onclick="showSection('monthly-challenge'); return false;">Go to challenge</a>
+    </article>
+
+    <article class="contribute-card" aria-labelledby="contrib-pr">
+      <h3 id="contrib-pr">Submit a Pull Request</h3>
+      <p>Small improvements are welcome—typos, examples, translations, UI polish.</p>
+      <a class="btn" target="_blank" rel="noopener"
+         href="https://github.com/arzucaner/web-accessibility-guide/compare">
+        Start a PR
+      </a>
+    </article>
+
+    <article class="contribute-card" aria-labelledby="contrib-translate">
+      <h3 id="contrib-translate">Translate the Guide</h3>
+      <p>Help translate UI and section titles. Add or improve a language file under <code>/lang</code>.</p>
+      <a class="btn" href="#" onclick="showSection('translate'); return false;">Translation guide</a>
+    </article>
+  </div>
+
+  <p class="contribute-note">
+    First time contributing? I'll help you through it—open an issue and say hi 👋
+  </p>
+</section>
+
+<section id="translate" class="hidden">
+  <h2>Translate the Guide <a href="#translate" class="section-link" aria-label="Copy link to Translate the Guide">#</a></h2>
+  <p>Translations are community-driven. You can start small—just the UI and section headings.</p>
+  <ol>
+    <li>Pick a language file under <code>/lang</code> (e.g., <code>es.json</code>).</li>
+    <li>Copy <code>en.json</code> as a base and translate values.</li>
+    <li>Keep keys unchanged; translate only the text.</li>
+    <li>Test locally and open a PR.</li>
+  </ol>
+  <p>
+    <a class="btn primary" target="_blank" rel="noopener" href="https://github.com/arzucaner/web-accessibility-guide/blob/main/CONTRIBUTING.md">
+      Open CONTRIBUTING.md
+    </a>
+  </p>
+</section>
+
+<section id="community" class="hidden">
+  <h2>Community <a href="#community" class="section-link" aria-label="Copy link to Community">#</a></h2>
+  <p>Have questions, ideas, or want to collaborate? Start a discussion.</p>
+  <div class="community-actions">
+    <a class="btn primary" target="_blank" rel="noopener"
+       href="https://github.com/arzucaner/web-accessibility-guide/discussions">
+      Start a Discussion
+    </a>
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://github.com/arzucaner/web-accessibility-guide/issues/new/choose">
+      Open an Issue
+    </a>
+  </div>
+  <ul class="community-topics">
+    <li><strong>Q&amp;A</strong> — Ask questions and get help</li>
+    <li><strong>Ideas</strong> — Suggest improvements or new sections</li>
+    <li><strong>Translations</strong> — Help translate the guide</li>
+    <li><strong>Monthly Challenge</strong> — Join and share progress</li>
+    <li><strong>Show &amp; Tell</strong> — Share PRs, demos, and learnings</li>
+  </ul>
+</section>
+
+<section id="personas" class="hidden">
+  <h2>Accessibility Personas <a href="#personas" class="section-link" aria-label="Copy link to Accessibility Personas">#</a></h2>
+  <p>Real people use the web in different ways. These personas help you design with empathy.</p>
+
+  <div class="persona-grid">
+    <article class="persona-card" aria-labelledby="persona-sr">
+      <div class="persona-header">
+        <span class="persona-icon" aria-hidden="true">🗣️</span>
+        <h3 id="persona-sr">Amara — Screen Reader User</h3>
+      </div>
+      <dl class="persona-details">
+        <dt>Goals</dt>
+        <dd>Navigate pages, fill out forms, and read content independently using a screen reader.</dd>
+        <dt>Pain points</dt>
+        <dd>Unlabelled buttons, missing alt text, dynamic content that updates silently, poor heading structure.</dd>
+        <dt>What helps</dt>
+        <dd>Semantic HTML, descriptive <code>aria-label</code> attributes, proper heading hierarchy, and <code>aria-live</code> regions for dynamic updates. See <a href="#screen-readers" onclick="showSection('screen-readers'); return false;">Screen Readers</a> and <a href="#dynamic-content" onclick="showSection('dynamic-content'); return false;">Dynamic Content</a>.</dd>
+      </dl>
+    </article>
+
+    <article class="persona-card" aria-labelledby="persona-kb">
+      <div class="persona-header">
+        <span class="persona-icon" aria-hidden="true">⌨️</span>
+        <h3 id="persona-kb">Leo — Keyboard-Only User</h3>
+      </div>
+      <dl class="persona-details">
+        <dt>Goals</dt>
+        <dd>Complete every task — menus, forms, modals — without a mouse or trackpad.</dd>
+        <dt>Pain points</dt>
+        <dd>Focus traps with no escape, invisible focus indicators, interactive elements unreachable by Tab.</dd>
+        <dt>What helps</dt>
+        <dd>Visible <code>:focus-visible</code> outlines, logical tab order, skip links, and proper focus management in modals. See <a href="#keyboard" onclick="showSection('keyboard'); return false;">Keyboard Navigation</a>.</dd>
+      </dl>
+    </article>
+
+    <article class="persona-card" aria-labelledby="persona-lv">
+      <div class="persona-header">
+        <span class="persona-icon" aria-hidden="true">🔍</span>
+        <h3 id="persona-lv">Priya — Low Vision / Zoom User</h3>
+      </div>
+      <dl class="persona-details">
+        <dt>Goals</dt>
+        <dd>Read all content comfortably at 200–400% zoom or with custom font sizes.</dd>
+        <dt>Pain points</dt>
+        <dd>Fixed-width layouts that break at high zoom, low contrast text, text embedded in images.</dd>
+        <dt>What helps</dt>
+        <dd>Responsive layouts, sufficient contrast ratios (AA minimum), resizable text, and real text instead of images. See <a href="#contrast" onclick="showSection('contrast'); return false;">Contrast &amp; Colors</a> and <a href="#dark-mode" onclick="showSection('dark-mode'); return false;">Dark Mode</a>.</dd>
+      </dl>
+    </article>
+
+    <article class="persona-card" aria-labelledby="persona-cog">
+      <div class="persona-header">
+        <span class="persona-icon" aria-hidden="true">🧠</span>
+        <h3 id="persona-cog">Sam — Cognitive Load Sensitivity</h3>
+      </div>
+      <dl class="persona-details">
+        <dt>Goals</dt>
+        <dd>Understand content quickly without being overwhelmed by motion, clutter, or complex language.</dd>
+        <dt>Pain points</dt>
+        <dd>Auto-playing animations, walls of text, unclear error messages, unexpected layout shifts.</dd>
+        <dt>What helps</dt>
+        <dd>Respecting <code>prefers-reduced-motion</code>, clear form error messages, simple language, and consistent navigation. See <a href="#animations" onclick="showSection('animations'); return false;">Accessible Animations</a> and <a href="#form-validation" onclick="showSection('form-validation'); return false;">Form Validation</a>.</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section id="spotlight" class="hidden">
+  <h2>Contributor Spotlight <a href="#spotlight" class="section-link" aria-label="Copy link to Contributor Spotlight">#</a></h2>
+  <p>Each month we highlight a community member who's making the web more accessible.</p>
+  <div id="spotlight-card"></div>
+  <div id="spotlight-status" class="sr-only" aria-live="polite"></div>
+</section>
+
+<section id="stories" class="hidden">
+  <h2>Accessibility Stories <a href="#stories" class="section-link" aria-label="Copy link to Accessibility Stories">#</a></h2>
+  <p>Real-world moments that show why accessibility matters — and what we can learn from them.</p>
+
+  <div class="stories-grid">
+    <article class="story-card" aria-labelledby="story-1-title">
+      <h3 id="story-1-title">The Form That Locked Everyone Out</h3>
+      <p>A checkout form relied entirely on placeholder text — no visible labels, no error messages. A screen reader user couldn't tell which field was which, and keyboard users had no idea what went wrong after pressing Submit. The team added proper <code>&lt;label&gt;</code> elements and <code>aria-describedby</code> error links, and support tickets dropped by 40% in a week.</p>
+      <p class="story-lesson"><strong>Lesson learned:</strong> Labels aren't optional — they're the first thing assistive tech looks for.</p>
+      <div class="story-tags" aria-label="Related topics">
+        <span class="story-tag">Forms</span>
+        <span class="story-tag">Screen readers</span>
+      </div>
+    </article>
+
+    <article class="story-card" aria-labelledby="story-2-title">
+      <h3 id="story-2-title">Trapped Inside a Modal</h3>
+      <p>A marketing site launched a newsletter popup that couldn't be closed by keyboard. Pressing Escape did nothing, and Tab cycled through the page behind the overlay instead of staying inside the modal. After a user complaint went viral, the team added focus trapping, an Escape handler, and returned focus to the trigger button on close.</p>
+      <p class="story-lesson"><strong>Lesson learned:</strong> Every modal needs a focus trap, an Escape exit, and a plan for where focus goes when it closes.</p>
+      <div class="story-tags" aria-label="Related topics">
+        <span class="story-tag">Keyboard</span>
+        <span class="story-tag">Focus management</span>
+      </div>
+    </article>
+
+    <article class="story-card" aria-labelledby="story-3-title">
+      <h3 id="story-3-title">The Dashboard Nobody Could Read</h3>
+      <p>An analytics dashboard used light-gray text on a white background for secondary stats. It looked "clean" in mockups, but users with low vision couldn't read the numbers, and everyone struggled in bright sunlight on laptops. Bumping the text to a 4.5:1 contrast ratio fixed readability without changing the design's feel.</p>
+      <p class="story-lesson"><strong>Lesson learned:</strong> Contrast isn't just an accessibility rule — it's a readability baseline for every user, in every environment.</p>
+      <div class="story-tags" aria-label="Related topics">
+        <span class="story-tag">Contrast</span>
+        <span class="story-tag">Low vision</span>
+      </div>
+    </article>
+  </div>
+</section>
+      </main>
+    </div>
+
+    <footer>
+      <p data-i18n="footer.copyright">&copy; 2024 Accessibility Guide. All rights reserved.</p>
+    </footer>
+
+    <!-- Live region for copy feedback -->
+    <div id="copy-feedback" aria-live="polite" aria-atomic="true" class="copy-feedback"></div>
+    
+    <!-- Live region for CodePen announcements -->
+    <div id="codepen-announcement" aria-live="polite" aria-atomic="true" class="codepen-announcement"></div>
+
+    <!-- GitHub Corner SVG -->
+    <a href="https://github.com/arzucaner/web-accessibility-guide" 
+       class="github-corner" 
+       data-i18n-aria-label="accessibility.viewSource"
+       aria-label="View source on GitHub"
+       target="_blank"
+       rel="noopener noreferrer">
+      <svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+    </a>
+
+    <!-- GitHub Star Button -->
+    <div class="github-star-container">
+      <a class="github-button" 
+         href="https://github.com/arzucaner/web-accessibility-guide" 
+         data-icon="octicon-star" 
+         data-size="large" 
+         data-show-count="true" 
+         data-i18n-aria-label="accessibility.starProject"
+         aria-label="Star this project on GitHub"
+         target="_blank"
+         rel="noopener noreferrer">
+        Star
+      </a>
+    </div>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" data-i18n-aria-label="accessibility.backToTop" data-i18n-title="accessibility.backToTop" aria-label="Back to top" title="Back to top">
+      <span aria-hidden="true">↑</span>
+    </button>
+
+    <!-- Feedback Widget -->
+    <button id="feedback-toggle" class="feedback-btn" aria-expanded="false" aria-controls="feedback-panel" aria-label="Open feedback panel">💬</button>
+    
+    <section id="feedback-panel" class="feedback-panel hidden" role="dialog" aria-modal="false" aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Send feedback</h2>
+      
+      <p>How can we improve the guide?</p>
+      
+      <div class="feedback-actions">
+        <a class="btn" href="https://github.com/arzucaner/web-accessibility-guide/issues/new/choose" target="_blank" rel="noopener">Open a GitHub issue</a>
+        <a class="btn" href="mailto:arzuguneycaner@gmail.com?subject=Accessibility%20Guide%20Feedback">Email</a>
+      </div>
+      
+      <form id="feedback-form" novalidate>
+        <label for="fb-message">Message</label>
+        <textarea id="fb-message" rows="4" required aria-describedby="fb-help"></textarea>
+        <div id="fb-help" class="hint">Please avoid sharing sensitive information.</div>
+        
+        <div class="row">
+          <label for="fb-type">Type</label>
+          <select id="fb-type">
+            <option value="idea">Idea</option>
+            <option value="bug">Bug</option>
+            <option value="content">Content</option>
+          </select>
+        </div>
+        
+        <div class="row">
+          <button type="submit" class="btn primary">Send</button>
+          <button type="button" id="feedback-close" class="btn">Close</button>
+        </div>
+        
+        <div id="fb-status" class="sr-only" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <script src="script.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        let refreshing = false;
+        let updateAvailable = false;
+        let registration = null;
+
+        // Register service worker
+        window.addEventListener('load', () => {
+          // Use relative path for GitHub Pages compatibility
+          const swPath = './service-worker.js';
+          navigator.serviceWorker.register(swPath, { scope: './' })
+            .then((reg) => {
+              registration = reg;
+              console.log('Service Worker registered:', reg.scope);
+
+              // Check for updates
+              reg.addEventListener('updatefound', () => {
+                const newWorker = reg.installing;
+                if (newWorker) {
+                  newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                      // New service worker available
+                      updateAvailable = true;
+                      showUpdateNotification();
+                    }
+                  });
+                }
+              });
+            })
+            .catch((err) => {
+              console.error('Service Worker registration failed:', err);
+            });
+        });
+
+        // Listen for controller change (new SW activated)
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        });
+
+        // Show update notification
+        function showUpdateNotification() {
+          // Create update toast
+          const toast = document.createElement('div');
+          toast.id = 'sw-update-toast';
+          toast.setAttribute('role', 'status');
+          toast.setAttribute('aria-live', 'polite');
+          toast.setAttribute('aria-atomic', 'true');
+          toast.setAttribute('tabindex', '-1');
+          toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            max-width: 300px;
+            font-size: 14px;
+            line-height: 1.5;
+          `;
+          toast.innerHTML = `
+            <p style="margin: 0 0 12px 0;">A new version is available.</p>
+            <button id="sw-update-button" style="
+              background-color: #ffffff;
+              color: #000000;
+              border: 2px solid #ffffff;
+              padding: 8px 16px;
+              border-radius: 4px;
+              font-size: 14px;
+              font-weight: bold;
+              cursor: pointer;
+              width: 100%;
+            ">Refresh to update</button>
+          `;
+
+          document.body.appendChild(toast);
+
+          const updateButton = document.getElementById('sw-update-button');
+          toast.focus();
+
+          // Handle update button click
+          updateButton.addEventListener('click', () => {
+            if (registration && registration.waiting) {
+              registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+            toast.remove();
+          });
+
+          // Handle Escape key to dismiss
+          updateButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+              toast.remove();
+            }
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
