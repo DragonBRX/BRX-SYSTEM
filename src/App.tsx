@@ -14,6 +14,8 @@ import Stories from './pages/Stories'
 import Code from './pages/Code'
 import Training from './pages/Training'
 import Catalog from './pages/Catalog'
+import Evolution from './pages/Evolution'
+import Benchmarking from './pages/Benchmarking'
 
 export default function App() {
   return (
@@ -31,6 +33,8 @@ export default function App() {
       <Route path="/code" element={<Code />} />
       <Route path="/training" element={<Training />} />
       <Route path="/catalog" element={<Catalog />} />
+      <Route path="/evolution" element={<Evolution />} />
+      <Route path="/benchmarking" element={<Benchmarking />} />
       <Route path="/integrations" element={<Integrations />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="*" element={<NotFound />} />

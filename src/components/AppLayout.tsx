@@ -16,6 +16,8 @@ import {
   Code2,
   GraduationCap,
   Library,
+  Flame,
+  Gauge,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -32,6 +34,8 @@ const navItems = [
   { path: "/code", label: "Code", icon: Code2 },
   { path: "/training", label: "Training", icon: GraduationCap },
   { path: "/catalog", label: "Catalog", icon: Library },
+  { path: "/evolution", label: "Evolution", icon: Flame },
+  { path: "/benchmarking", label: "Benchmarking", icon: Gauge },
   { path: "/integrations", label: "Integrations", icon: Plug },
   { path: "/settings", label: "Settings", icon: Settings },
 ]

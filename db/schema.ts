@@ -663,6 +663,157 @@ export const pluginRegistry = mysqlTable("plugin_registry", {
     .$onUpdate(() => new Date()),
 });
 
+export const aiEntities = mysqlTable("ai_entities", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull().unique(),
+  description: text("description"),
+  avatar: text("avatar"),
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  emailPassword: varchar("emailPassword", { length: 255 }),
+  status: mysqlEnum("status", ["dormant", "initializing", "active", "learning", "evolved", "paused", "archived"]).default("dormant").notNull(),
+  version: varchar("version", { length: 50 }).default("1.0").notNull(),
+  modelType: varchar("modelType", { length: 100 }).notNull(),
+  baseModel: varchar("baseModel", { length: 255 }),
+  parameters: bigint("parameters", { mode: "number", unsigned: true }).default(0),
+  trainingDataSize: bigint("trainingDataSize", { mode: "number", unsigned: true }).default(0),
+  autonomyLevel: int("autonomyLevel").default(0),
+  maxAgents: int("maxAgents").default(100),
+  maxThreads: int("maxThreads").default(32),
+  memoryLimit: int("memoryLimit").default(8192),
+  cpuLimit: float("cpuLimit").default(100),
+  sandboxEnabled: boolean("sandboxEnabled").default(true).notNull(),
+  browserAccess: boolean("browserAccess").default(false).notNull(),
+  emailAccess: boolean("emailAccess").default(false).notNull(),
+  apiAccess: boolean("apiAccess").default(false).notNull(),
+  webhookAccess: boolean("webhookAccess").default(false).notNull(),
+  autonomousActions: boolean("autonomousActions").default(false).notNull(),
+  selfImprovementEnabled: boolean("selfImprovementEnabled").default(false).notNull(),
+  capabilities: json("capabilities"),
+  permissions: json("permissions"),
+  restrictions: json("restrictions"),
+  performanceMetrics: json("performanceMetrics"),
+  evolutionHistory: json("evolutionHistory"),
+  lastActionAt: timestamp("lastActionAt"),
+  bornAt: timestamp("bornAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const aiEntitiesRelations = relations(aiEntities, ({ many }) => ({
+  identities: many(entityIdentities),
+  autonomyLogs: many(autonomyLogs),
+  communications: many(entityCommunications),
+  actions: many(entityActions),
+}));
+
+export const entityIdentities = mysqlTable("entity_identities", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  identityType: mysqlEnum("identityType", ["email", "api_key", "webhook", "browser_session", "oauth", "custom"]).notNull(),
+  identityValue: varchar("identityValue", { length: 500 }).notNull(),
+  identitySecret: text("identitySecret"),
+  isActive: boolean("isActive").default(true).notNull(),
+  permissions: json("permissions"),
+  rateLimit: int("rateLimit").default(1000),
+  usageCount: int("usageCount").default(0),
+  lastUsedAt: timestamp("lastUsedAt"),
+  expiresAt: timestamp("expiresAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const entityIdentitiesRelations = relations(entityIdentities, ({ one }) => ({
+  entity: one(aiEntities, { fields: [entityIdentities.entityId], references: [aiEntities.id] }),
+}));
+
+export const autonomyLogs = mysqlTable("autonomy_logs", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  actionType: mysqlEnum("actionType", [
+    "decision",
+    "self_improvement",
+    "parameter_update",
+    "code_generation",
+    "code_execution",
+    "learning",
+    "evolution",
+    "resource_allocation",
+    "other",
+  ]).notNull(),
+  description: text("description"),
+  reasoning: longtext("reasoning"),
+  decision: json("decision"),
+  outcome: json("outcome"),
+  success: boolean("success").default(true).notNull(),
+  errorMessage: text("errorMessage"),
+  resourcesUsed: json("resourcesUsed"),
+  performanceImpact: json("performanceImpact"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const autonomyLogsRelations = relations(autonomyLogs, ({ one }) => ({
+  entity: one(aiEntities, { fields: [autonomyLogs.entityId], references: [aiEntities.id] }),
+}));
+
+export const entityCommunications = mysqlTable("entity_communications", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  communicationType: mysqlEnum("communicationType", ["email", "webhook", "api_call", "internal_message", "external_api", "other"]).notNull(),
+  direction: mysqlEnum("direction", ["inbound", "outbound"]).notNull(),
+  recipient: varchar("recipient", { length: 500 }),
+  sender: varchar("sender", { length: 500 }),
+  subject: varchar("subject", { length: 500 }),
+  content: longtext("content"),
+  metadata: json("metadata"),
+  status: mysqlEnum("status", ["pending", "sent", "received", "failed", "archived"]).default("pending").notNull(),
+  errorMessage: text("errorMessage"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  processedAt: timestamp("processedAt"),
+});
+
+export const entityCommunicationsRelations = relations(entityCommunications, ({ one }) => ({
+  entity: one(aiEntities, { fields: [entityCommunications.entityId], references: [aiEntities.id] }),
+}));
+
+export const entityActions = mysqlTable("entity_actions", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  actionType: mysqlEnum("actionType", [
+    "code_analysis",
+    "code_generation",
+    "code_execution",
+    "web_search",
+    "api_call",
+    "file_operation",
+    "database_operation",
+    "self_modification",
+    "parameter_optimization",
+    "other",
+  ]).notNull(),
+  description: text("description"),
+  input: longtext("input"),
+  output: longtext("output"),
+  status: mysqlEnum("status", ["pending", "executing", "completed", "failed", "cancelled"]).default("pending").notNull(),
+  errorMessage: text("errorMessage"),
+  executionTime: int("executionTime"),
+  resourcesUsed: json("resourcesUsed"),
+  result: json("result"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  completedAt: timestamp("completedAt"),
+});
+
+export const entityActionsRelations = relations(entityActions, ({ one }) => ({
+  entity: one(aiEntities, { fields: [entityActions.entityId], references: [aiEntities.id] }),
+}));
+
 export const openSourceCatalog = mysqlTable("open_source_catalog", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 255 }).notNull(),
@@ -744,5 +895,231 @@ export type ApiKey = typeof apiKeys.$inferSelect;
 export type InsertApiKey = typeof apiKeys.$inferInsert;
 export type PluginRegistry = typeof pluginRegistry.$inferSelect;
 export type InsertPluginRegistry = typeof pluginRegistry.$inferInsert;
+export const benchmarkSuites = mysqlTable("benchmark_suites", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  category: mysqlEnum("category", [
+    "language_understanding",
+    "reasoning",
+    "programming",
+    "mathematics",
+    "knowledge",
+    "instruction_following",
+    "safety",
+    "multimodal",
+    "efficiency",
+    "other",
+  ]).notNull(),
+  benchmarkType: mysqlEnum("benchmarkType", [
+    "mmlu",
+    "gpqa",
+    "humaneval",
+    "math",
+    "arc",
+    "hellaswag",
+    "lambada",
+    "truthfulqa",
+    "gsm8k",
+    "custom",
+  ]).notNull(),
+  totalQuestions: int("totalQuestions").default(0),
+  difficulty: mysqlEnum("difficulty", ["easy", "medium", "hard", "expert"]).default("medium").notNull(),
+  datasetUrl: text("datasetUrl"),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const benchmarkResults = mysqlTable("benchmark_results", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  benchmarkSuiteId: bigint("benchmarkSuiteId", { mode: "number", unsigned: true }).notNull(),
+  modelName: varchar("modelName", { length: 255 }).notNull(),
+  modelVersion: varchar("modelVersion", { length: 50 }),
+  apiEndpoint: varchar("apiEndpoint", { length: 500 }),
+  totalQuestions: int("totalQuestions").default(0),
+  correctAnswers: int("correctAnswers").default(0),
+  accuracy: float("accuracy").default(0),
+  precision: float("precision").default(0),
+  recall: float("recall").default(0),
+  f1Score: float("f1Score").default(0),
+  avgLatency: int("avgLatency").default(0),
+  avgTokensPerSecond: float("avgTokensPerSecond").default(0),
+  totalTokensUsed: bigint("totalTokensUsed", { mode: "number", unsigned: true }).default(0),
+  totalCost: float("totalCost").default(0),
+  memoryUsed: int("memoryUsed").default(0),
+  cpuUsed: float("cpuUsed").default(0),
+  gpuUsed: float("gpuUsed").default(0),
+  perplexity: float("perplexity").default(0),
+  bleuScore: float("bleuScore").default(0),
+  rougeScore: float("rougeScore").default(0),
+  semanticSimilarity: float("semanticSimilarity").default(0),
+  coherenceScore: float("coherenceScore").default(0),
+  factualityScore: float("factualityScore").default(0),
+  safetyScore: float("safetyScore").default(0),
+  detailedResults: json("detailedResults"),
+  errorAnalysis: json("errorAnalysis"),
+  recommendations: json("recommendations"),
+  metadata: json("metadata"),
+  status: mysqlEnum("status", ["pending", "running", "completed", "failed"]).default("pending").notNull(),
+  errorMessage: text("errorMessage"),
+  startedAt: timestamp("startedAt"),
+  completedAt: timestamp("completedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const benchmarkResultsRelations = relations(benchmarkResults, ({ one }) => ({
+  entity: one(aiEntities, { fields: [benchmarkResults.entityId], references: [aiEntities.id] }),
+}));
+
+export const qualityMetrics = mysqlTable("quality_metrics", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  benchmarkResultId: bigint("benchmarkResultId", { mode: "number", unsigned: true }).notNull(),
+  metricType: mysqlEnum("metricType", [
+    "accuracy",
+    "latency",
+    "throughput",
+    "perplexity",
+    "coherence",
+    "factuality",
+    "safety",
+    "efficiency",
+    "consistency",
+    "relevance",
+  ]).notNull(),
+  metricName: varchar("metricName", { length: 255 }).notNull(),
+  metricValue: float("metricValue").notNull(),
+  unit: varchar("unit", { length: 50 }),
+  threshold: float("threshold"),
+  status: mysqlEnum("status", ["excellent", "good", "acceptable", "poor", "critical"]).notNull(),
+  trend: mysqlEnum("trend", ["improving", "stable", "degrading"]).default("stable").notNull(),
+  historicalData: json("historicalData"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const qualityMetricsRelations = relations(qualityMetrics, ({ one }) => ({
+  entity: one(aiEntities, { fields: [qualityMetrics.entityId], references: [aiEntities.id] }),
+}));
+
+export const modelComparisons = mysqlTable("model_comparisons", {
+  id: serial("id").primaryKey(),
+  comparisonName: varchar("comparisonName", { length: 255 }).notNull(),
+  model1Id: bigint("model1Id", { mode: "number", unsigned: true }).notNull(),
+  model1Name: varchar("model1Name", { length: 255 }).notNull(),
+  model2Id: bigint("model2Id", { mode: "number", unsigned: true }),
+  model2Name: varchar("model2Name", { length: 255 }).notNull(),
+  benchmarkSuiteId: bigint("benchmarkSuiteId", { mode: "number", unsigned: true }).notNull(),
+  model1Score: float("model1Score").default(0),
+  model2Score: float("model2Score").default(0),
+  winner: mysqlEnum("winner", ["model1", "model2", "tie"]).default("tie").notNull(),
+  scoreGap: float("scoreGap").default(0),
+  improvementPercentage: float("improvementPercentage").default(0),
+  detailedComparison: json("detailedComparison"),
+  insights: json("insights"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const performanceOptimizations = mysqlTable("performance_optimizations", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  benchmarkResultId: bigint("benchmarkResultId", { mode: "number", unsigned: true }).notNull(),
+  optimizationType: mysqlEnum("optimizationType", [
+    "prompt_engineering",
+    "parameter_tuning",
+    "model_pruning",
+    "quantization",
+    "caching",
+    "batch_processing",
+    "architecture_change",
+    "training_data_quality",
+    "other",
+  ]).notNull(),
+  description: text("description"),
+  recommendation: text("recommendation"),
+  expectedImprovement: float("expectedImprovement"),
+  priority: mysqlEnum("priority", ["critical", "high", "medium", "low"]).default("medium").notNull(),
+  estimatedEffort: varchar("estimatedEffort", { length: 50 }),
+  status: mysqlEnum("status", ["suggested", "in_progress", "completed", "rejected"]).default("suggested").notNull(),
+  appliedAt: timestamp("appliedAt"),
+  actualImprovement: float("actualImprovement"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const performanceOptimizationsRelations = relations(performanceOptimizations, ({ one }) => ({
+  entity: one(aiEntities, { fields: [performanceOptimizations.entityId], references: [aiEntities.id] }),
+}));
+
+export const modelParameters = mysqlTable("model_parameters", {
+  id: serial("id").primaryKey(),
+  entityId: bigint("entityId", { mode: "number", unsigned: true }).notNull(),
+  parameterName: varchar("parameterName", { length: 255 }).notNull(),
+  parameterType: mysqlEnum("parameterType", [
+    "temperature",
+    "top_p",
+    "top_k",
+    "frequency_penalty",
+    "presence_penalty",
+    "max_tokens",
+    "repetition_penalty",
+    "length_penalty",
+    "custom",
+  ]).notNull(),
+  currentValue: varchar("currentValue", { length: 255 }).notNull(),
+  minValue: varchar("minValue", { length: 255 }),
+  maxValue: varchar("maxValue", { length: 255 }),
+  defaultValue: varchar("defaultValue", { length: 255 }),
+  description: text("description"),
+  impact: mysqlEnum("impact", ["critical", "high", "medium", "low"]).default("medium").notNull(),
+  optimizationHistory: json("optimizationHistory"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const modelParametersRelations = relations(modelParameters, ({ one }) => ({
+  entity: one(aiEntities, { fields: [modelParameters.entityId], references: [aiEntities.id] }),
+}));
+
 export type OpenSourceCatalog = typeof openSourceCatalog.$inferSelect;
 export type InsertOpenSourceCatalog = typeof openSourceCatalog.$inferInsert;
+export type AiEntity = typeof aiEntities.$inferSelect;
+export type InsertAiEntity = typeof aiEntities.$inferInsert;
+export type EntityIdentity = typeof entityIdentities.$inferSelect;
+export type InsertEntityIdentity = typeof entityIdentities.$inferInsert;
+export type AutonomyLog = typeof autonomyLogs.$inferSelect;
+export type InsertAutonomyLog = typeof autonomyLogs.$inferInsert;
+export type EntityCommunication = typeof entityCommunications.$inferSelect;
+export type InsertEntityCommunication = typeof entityCommunications.$inferInsert;
+export type EntityAction = typeof entityActions.$inferSelect;
+export type InsertEntityAction = typeof entityActions.$inferInsert;
+export type BenchmarkSuite = typeof benchmarkSuites.$inferSelect;
+export type InsertBenchmarkSuite = typeof benchmarkSuites.$inferInsert;
+export type BenchmarkResult = typeof benchmarkResults.$inferSelect;
+export type InsertBenchmarkResult = typeof benchmarkResults.$inferInsert;
+export type QualityMetric = typeof qualityMetrics.$inferSelect;
+export type InsertQualityMetric = typeof qualityMetrics.$inferInsert;
+export type ModelComparison = typeof modelComparisons.$inferSelect;
+export type InsertModelComparison = typeof modelComparisons.$inferInsert;
+export type PerformanceOptimization = typeof performanceOptimizations.$inferSelect;
+export type InsertPerformanceOptimization = typeof performanceOptimizations.$inferInsert;
+export type ModelParameter = typeof modelParameters.$inferSelect;
+export type InsertModelParameter = typeof modelParameters.$inferInsert;
