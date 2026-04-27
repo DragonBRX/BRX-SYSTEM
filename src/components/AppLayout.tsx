@@ -147,3 +147,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
+14 lg:pt-0">
+        <div className="p-4 lg:p-8 max-w-7xl mx-auto">
+          {children}
+        </div>
+      </main>
+    </div>
+  )
+}

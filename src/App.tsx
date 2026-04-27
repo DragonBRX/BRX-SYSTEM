@@ -41,3 +41,8 @@ export default function App() {
     </Routes>
   )
 }
+Settings />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  )
+}

@@ -26,3 +26,7 @@ export const appRouter = createRouter({
 });
 
 export type AppRouter = typeof appRouter;
+ score: scoreRouter,
+});
+
+export type AppRouter = typeof appRouter;

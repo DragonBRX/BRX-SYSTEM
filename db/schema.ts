@@ -1123,3 +1123,118 @@ export type PerformanceOptimization = typeof performanceOptimizations.$inferSele
 export type InsertPerformanceOptimization = typeof performanceOptimizations.$inferInsert;
 export type ModelParameter = typeof modelParameters.$inferSelect;
 export type InsertModelParameter = typeof modelParameters.$inferInsert;
+ed: true }).notNull().unique(),
+  totalScore: bigint("totalScore", { mode: "number", unsigned: true }).default(0).notNull(),
+  currentLevel: int("currentLevel").default(1).notNull(),
+  currentXp: int("currentXp").default(0).notNull(),
+  xpToNextLevel: int("xpToNextLevel").default(100).notNull(),
+  dailyStreak: int("dailyStreak").default(0).notNull(),
+  longestStreak: int("longestStreak").default(0).notNull(),
+  lastActivityAt: timestamp("lastActivityAt").defaultNow().notNull(),
+  achievementsCount: int("achievementsCount").default(0).notNull(),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt")
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+
+export const userScoresRelations = relations(userScores, ({ one, many }) => ({
+  user: one(users, { fields: [userScores.userId], references: [users.id] }),
+  transactions: many(scoreTransactions),
+  achievements: many(userAchievements),
+}));
+
+export const scoreTransactions = mysqlTable("score_transactions", {
+  id: serial("id").primaryKey(),
+  userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
+  actionType: mysqlEnum("actionType", [
+    "agent_create",
+    "agent_run",
+    "workflow_create",
+    "workflow_run",
+    "knowledge_create",
+    "document_add",
+    "chat_start",
+    "training_create",
+    "training_complete",
+    "story_create",
+    "code_project_create",
+    "integration_add",
+    "benchmark_complete",
+    "model_create",
+    "prompt_create",
+    "dataset_create",
+    "daily_login",
+    "streak_bonus",
+    "achievement_unlock",
+    "other",
+  ]).notNull(),
+  actionId: varchar("actionId", { length: 100 }),
+  points: int("points").notNull(),
+  description: varchar("description", { length: 255 }),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const scoreTransactionsRelations = relations(scoreTransactions, ({ one }) => ({
+  user: one(users, { fields: [scoreTransactions.userId], references: [users.id] }),
+  score: one(userScores, { fields: [scoreTransactions.userId], references: [userScores.userId] }),
+}));
+
+export const achievementDefinitions = mysqlTable("achievement_definitions", {
+  id: serial("id").primaryKey(),
+  key: varchar("key", { length: 100 }).notNull().unique(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  icon: varchar("icon", { length: 100 }).default("trophy"),
+  color: varchar("color", { length: 50 }).default("amber"),
+  category: mysqlEnum("category", [
+    "usage",
+    "creation",
+    "mastery",
+    "social",
+    "special",
+  ]).default("usage").notNull(),
+  requirementType: mysqlEnum("requirementType", [
+    "score_threshold",
+    "action_count",
+    "streak_days",
+    "unique_actions",
+    "special",
+  ]).notNull(),
+  requirementValue: int("requirementValue").default(1).notNull(),
+  requirementAction: varchar("requirementAction", { length: 100 }),
+  pointsReward: int("pointsReward").default(0).notNull(),
+  isSecret: boolean("isSecret").default(false).notNull(),
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const userAchievements = mysqlTable("user_achievements", {
+  id: serial("id").primaryKey(),
+  userId: bigint("userId", { mode: "number", unsigned: true }).notNull(),
+  achievementId: bigint("achievementId", { mode: "number", unsigned: true }).notNull(),
+  progress: int("progress").default(0).notNull(),
+  isUnlocked: boolean("isUnlocked").default(false).notNull(),
+  unlockedAt: timestamp("unlockedAt"),
+  metadata: json("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const userAchievementsRelations = relations(userAchievements, ({ one }) => ({
+  user: one(users, { fields: [userAchievements.userId], references: [users.id] }),
+  definition: one(achievementDefinitions, { fields: [userAchievements.achievementId], references: [achievementDefinitions.id] }),
+  score: one(userScores, { fields: [userAchievements.userId], references: [userScores.userId] }),
+}));
+
+export type UserScore = typeof userScores.$inferSelect;
+export type InsertUserScore = typeof userScores.$inferInsert;
+export type ScoreTransaction = typeof scoreTransactions.$inferSelect;
+export type InsertScoreTransaction = typeof scoreTransactions.$inferInsert;
+export type AchievementDefinition = typeof achievementDefinitions.$inferSelect;
+export type InsertAchievementDefinition = typeof achievementDefinitions.$inferInsert;
+export type UserAchievement = typeof userAchievements.$inferSelect;
+export type InsertUserAchievement = typeof userAchievements.$inferInsert;
+

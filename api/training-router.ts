@@ -205,3 +205,15 @@ export const trainingRouter = createRouter({
       return { success: true };
     }),
 });
+ success: true };
+    }),
+
+  deleteDataset: authedMutation
+    .input(z.object({ id: z.number() }))
+    .mutation(async ({ ctx, input }) => {
+      await db
+        .delete(datasets)
+        .where(and(eq(datasets.id, input.id), eq(datasets.userId, ctx.user.id)));
+      return { success: true };
+    }),
+});
