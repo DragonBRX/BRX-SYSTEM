@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🇧🇷 BRX SYSTEM — Agora é a vez dos brasileiros brincar
+# BRX SYSTEM — Agora é a vez dos brasileiros brincar
 
 **BRX • Brasil x Futuro**
 
