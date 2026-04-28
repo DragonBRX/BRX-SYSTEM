@@ -1,8 +1,9 @@
 {
-  "name": "my-app",
+  "name": "brx-system",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "BRX SYSTEM - Open Source AI Platform with integrated Antigravity Awesome Skills (1,436+ agentic skills for Claude Code, Gemini CLI, Cursor, Copilot & More)",
   "scripts": {
     "dev": "vite",
     "build": "vite build && esbuild api/boot.ts --platform=node --bundle --format=esm --outdir=dist --banner:js=\"import { createRequire } from 'module';const require = createRequire(import.meta.url);\"",
@@ -14,7 +15,16 @@
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "skills:validate": "node tools/scripts/run-python.js tools/scripts/validate_skills.py",
+    "skills:validate:strict": "node tools/scripts/run-python.js tools/scripts/validate_skills.py --strict",
+    "skills:audit": "node tools/scripts/run-python.js tools/scripts/audit_skills.py",
+    "skills:fix:missing-sections": "node tools/scripts/run-python.js tools/scripts/fix_missing_skill_sections.py",
+    "skills:fix:missing-metadata": "node tools/scripts/run-python.js tools/scripts/fix_missing_skill_metadata.py",
+    "skills:index": "node tools/scripts/run-python.js tools/scripts/generate_index.py",
+    "skills:catalog": "node tools/scripts/build-catalog.js",
+    "skills:build": "npm run skills:index && npm run skills:catalog",
+    "skills:test": "node tools/scripts/tests/run-test-suite.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -77,7 +87,8 @@
     "@aws-sdk/s3-request-presigner": "^3.965.0",
     "cookie": "^1.1.1",
     "jose": "6.1.3",
-    "nanoid": "^5.1.6"
+    "nanoid": "^5.1.6",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

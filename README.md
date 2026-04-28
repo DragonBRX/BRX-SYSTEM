@@ -232,6 +232,15 @@ MIT License - Open Source
 
 This platform integrates and builds upon the incredible work of the open-source AI community, including projects from Meta, DeepSeek, Alibaba, Mistral AI, Google, Microsoft, OpenAI, Nomic, Stability AI, and countless individual contributors.
 
+### Antigravity Awesome Skills Integration
+
+BRX SYSTEM now ships with **1,436+ agentic skills** from the [Antigravity Awesome Skills](https://github.com/sickn33/antigravity-awesome-skills) library, providing structured SKILL.md playbooks for Claude Code, Cursor, Codex CLI, Gemini CLI, Antigravity, Kiro, OpenCode, GitHub Copilot, and other AI coding assistants. These skills cover development, testing, security, infrastructure, product, and marketing workflows.
+
+- Browse the full catalog in [`CATALOG.md`](CATALOG.md)
+- Explore role-based bundles in [`docs/skills/users/bundles.md`](docs/skills/users/bundles.md)
+- Use workflows in [`docs/skills/users/workflows.md`](docs/skills/users/workflows.md)
+- Validate skills with `npm run skills:validate`
+
 ---
 
 Built by the community, for the community.
